@@ -1,0 +1,28 @@
+{{> index}}
+  <div id="myDiv" style="margin-left:15%;margin-right:15%; display: flex;background-color: lightblue">
+    <div id="imageDiv" style="flex: 1;display:flex;">
+      <!-- Content for the image div -->
+      <img src="{{product.imagePath}}" alt="Your Image">
+    </div>
+    <div id="textDiv" style="flex: 2; display: flex; flex-direction: column; justify-content: space-between;">
+      <!-- Content for the text div -->
+      <div id="topDiv" style="text-align: center; padding: 10px;">
+        <!-- Content for the top div -->
+        <h2>{{product.name}}</h2>
+      </div>
+      <p style="margin-left:2%">{{{product.long_description}}}</p>
+      <div id="bottomDiv" style="display: flex; align-items: center; padding: 10px; margin-top: auto;">
+        <!-- Content for the bottom div -->
+        <button style=";margin-right: 10px;width:120px;height:45px;font-size:medium;border-radius:50px;background-color:rgb(193, 189, 193);cursor:pointer">Buy Now</button>
+        <pre id="priceTag" style="margin:0;margin-left:auto;font-size:20px">Price:{{product.price}} </pre>
+        <label for="dog-names"></label> 
+    <select name="dog-names" id="dog-names"> 
+        <option value="USD">USD</option> 
+        <option value="LEI">LEI</option> 
+        <option value="LIRE">LIRE</option> 
+        <option value="EURO">EURO</option> 
+    </select>
+      </div>
+    </div>
+  </div>
+  {{> footer}}

@@ -1,0 +1,39 @@
+
+{{> index}}
+<p style='color:red;font-size:30px'>{{categoryName}}</p>
+<p>Category Description ->Lorem ipsum dolor sit amet, consectetur adipiscing
+  elit. Maecenas luctus vestibulum posuere. Suspendisse mauris ex, vehicula id
+  erat quis, laoreet faucibus eros. Nam interdum sem felis, rhoncus condimentum
+  neque pellentesque sed. Duis non imperdiet ligula. Sed maximus id mi quis
+  rhoncus. Sed in enim ullamcorper, placerat mauris ut, feugiat mauris. Aenean
+  ut quam rutrum, tincidunt purus in, commodo mauris. Nullam metus nibh, dictum
+  at lectus vitae, tincidunt viverra diam. Curabitur id felis semper, venenatis
+  magna et, placerat nibh. Integer blandit eros ac enim tristique, non cursus
+  velit faucibus.</p>
+   
+  {{#each subcategories}}
+<p style='color:red;font-size:30px'>{{this.subcategory_name}}</p>
+{{#each this}}
+  <div style='text-align:center'>
+    <a href='{{this.idLink}}'> <img src='{{this.imagePath}}' alt='' /></a>
+  </div>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas luctus
+    vestibulum posuere. Suspendisse mauris ex, vehicula id erat quis, laoreet
+    faucibus eros. Nam interdum sem felis, rhoncus condimentum neque
+    pellentesque sed. Duis non imperdiet ligula. Sed maximus id mi quis rhoncus.
+    Sed in enim ullamcorper, placerat mauris ut, feugiat mauris. Aenean ut quam
+    rutrum, tincidunt purus in, commodo mauris. Nullam metus nibh, dictum at
+    lectus vitae, tincidunt viverra diam. Curabitur id felis semper, venenatis
+    magna et, placerat nibh. Integer blandit eros ac enim tristique, non cursus
+    velit faucibus.</p>
+
+  <div style='text-align:center;margin-bottom:10px;'>
+    <a href='{{this.idLink}}'><button
+      style='width:150px;height:50px;font-size:medium;border-radius:50px;background-color:rgb(193, 189, 193);cursor:pointer'
+    >{{this.name}}</button>
+  </div></a>
+  <hr style="margin-bottom:25px;"></hr>
+{{/each}}
+{{/each}}
+</div>
+{{> footer}}
