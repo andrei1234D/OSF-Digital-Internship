@@ -1,11 +1,10 @@
 var express = require('express');
 var router = express.Router();
+require('dotenv').config();
 
-let uri =
-  'mongodb+srv://balasandrei200:9pUu1Pki0jTZJs2x@cluster0.zram96h.mongodb.net/shop_db';
 const retrieveDocument = async () => {
   var mongoose = require('mongoose');
-  mongoose.connect(uri);
+  mongoose.connect(process.env.API_KEY);
   const CategoriesModel = require('../models/categories');
   return await CategoriesModel.findOne({ name: 'Mens' });
 };
@@ -36,8 +35,6 @@ router.get('/', async function (req, res, next) {
   mappedResult.mensAccessories.subcategory_name = 'Mens Accesories';
   let link = req.protocol + '://' + req.get('host') + req.originalUrl;
   let breadcrumbs = [];
-
-  console.log(mappedResult);
 
   if ('http://localhost:3000/mensClothing/' === link) {
     let object1 = {};

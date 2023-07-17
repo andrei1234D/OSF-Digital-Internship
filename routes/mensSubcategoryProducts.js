@@ -2,11 +2,10 @@ var express = require('express');
 const { map } = require('../app');
 var router = express.Router();
 
-let uri =
-  'mongodb+srv://balasandrei200:9pUu1Pki0jTZJs2x@cluster0.zram96h.mongodb.net/shop_db';
+require('dotenv').config();
 const retrieveDocument = async () => {
   var mongoose = require('mongoose');
-  mongoose.connect(uri);
+  mongoose.connect(process.env.API_KEY);
   const ProductModel = require('../models/product');
   return await ProductModel.find();
 };
