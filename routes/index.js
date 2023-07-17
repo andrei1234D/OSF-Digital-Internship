@@ -5,10 +5,9 @@ var router = express.Router();
 router.get('/', async function (req, res, next) {
   let link = req.protocol + '://' + req.get('host') + req.originalUrl;
   let breadcrumbs = [];
-  console.log;
-  if (link === 'https://coral-camel-wear.cyclic.app/') {
+  if (link === 'http://localhost:3000/') {
     let object = {};
-    object.link = 'https://coral-camel-wear.cyclic.app';
+    object.link = 'http://localhost:3000';
     object.name = 'Home';
     breadcrumbs.push(object);
   }
