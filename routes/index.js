@@ -15,6 +15,8 @@ router.get('/', async function (req, res, next) {
   res.render('index', {
     title: 'Robbing City Galati',
     currentUrl: breadcrumbs,
+    menButtonLink: process.env.CYCLIC_URL + '/mensClothing',
+    womanButtonLink: process.env.CYCLIC_URL + '/womansClothing',
   });
 });
 
