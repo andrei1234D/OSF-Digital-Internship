@@ -5,25 +5,12 @@ var router = express.Router();
 router.get('/', async function (req, res, next) {
   let link = req.protocol + '://' + req.get('host') + req.originalUrl;
   let breadcrumbs = [];
-  switch (link) {
-    case 'http://localhost:3000/':
-      let object = {};
-      object.link = 'http://localhost:3000';
-      object.name = 'Home';
-      breadcrumbs.push(object);
-      break;
-    case 'http://localhost:3000/mensClothing':
-      let object1 = {};
-      object1.link = 'http://localhost:3000';
-      object1.name = 'Home';
-      breadcrumbs.push(object1);
-      let object2 = {};
-      object2.link = 'http://localhost:3000/mensClothing';
-      object2.name = 'Mens Clothing';
-      breadcrumbs.push(object2);
-      break;
-    default:
-      break;
+  console.log;
+  if (link === 'https://coral-camel-wear.cyclic.app/') {
+    let object = {};
+    object.link = 'https://coral-camel-wear.cyclic.app';
+    object.name = 'Home';
+    breadcrumbs.push(object);
   }
   console.log(breadcrumbs);
   res.render('index', {
