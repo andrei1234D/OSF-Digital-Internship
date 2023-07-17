@@ -5,7 +5,7 @@ var router = express.Router();
 router.get('/', async function (req, res, next) {
   let link = req.protocol + '://' + req.get('host') + req.originalUrl;
   let breadcrumbs = [];
-  if (link === 'http://localhost:3000/') {
+  if (link === process.env.CYCLIC_URL) {
     let object = {};
     object.link = 'http://localhost:3000';
     object.name = 'Home';

@@ -19,33 +19,33 @@ router.get('/', async function (req, res, next) {
   let breadcrumbs = [];
   let clothingCategory = false;
   switch (link) {
-    case `http://localhost:3000/womansClothing/${id[1]}`:
+    case `${process.env.CYCLIC_URL}/womansClothing/${id[1]}`:
       let object1 = {};
-      object1.link = 'http://localhost:3000';
+      object1.link = `${process.env.CYCLIC_URL}`;
       object1.name = 'Home';
       breadcrumbs.push(object1);
       let object2 = {};
-      object2.link = 'http://localhost:3000/womansClothing';
+      object2.link = `${process.env.CYCLIC_URL}/womansClothing`;
       object2.name = 'Womans Clothing';
       breadcrumbs.push(object2);
       let object3 = {};
-      object3.link = `http://localhost:3000/womansClothing/${id[1]}`;
+      object3.link = `${process.env.CYCLIC_URL}/womansClothing/${id[1]}`;
       object3.name = id[1];
       breadcrumbs.push(object3);
       break;
     default:
-    case `http://localhost:3000/mensClothing/${id[1]}`:
+    case `${process.env.CYCLIC_URL}/mensClothing/${id[1]}`:
       clothingCategory = true;
       let object4 = {};
-      object4.link = 'http://localhost:3000';
+      object4.link = `${process.env.CYCLIC_URL}`;
       object4.name = 'Home';
       breadcrumbs.push(object4);
       let object5 = {};
-      object5.link = 'http://localhost:3000/mensClothing';
+      object5.link = `${process.env.CYCLIC_URL}/mensClothing`;
       object5.name = 'Mens Clothing';
       breadcrumbs.push(object5);
       let object6 = {};
-      object6.link = `http://localhost:3000/mensClothing/${id[1]}`;
+      object6.link = `${process.env.CYCLIC_URL}/mensClothing/${id[1]}`;
       object6.name = id[1];
       breadcrumbs.push(object6);
       break;
@@ -60,11 +60,11 @@ router.get('/', async function (req, res, next) {
       object.short_description = item.short_description;
       object.imagePath = 'images/' + item.image_groups[0].images[0].link;
       if (id[0] === 'mensClothing') {
-        object.productLink = `http://localhost:3000/mensClothing/${
+        object.productLink = `${process.env.CYCLIC_URL}/mensClothing/${
           id[1]
         }/${item.name.replace(/ /g, '_')}`;
       } else {
-        object.productLink = `http://localhost:3000/womansClothing/${
+        object.productLink = `${process.env.CYCLIC_URL}/womansClothing/${
           id[1]
         }/${item.name.replace(/ /g, '_')}`;
       }

@@ -17,14 +17,14 @@ router.get('/', async function (req, res, next) {
     (categoryItem) => ({
       imagePath: 'images/' + categoryItem.image,
       name: categoryItem.name,
-      idLink: `http://localhost:3000/mensClothing/${categoryItem.id}`,
+      idLink: `${process.env.CYCLIC_URL}/mensClothing/${categoryItem.id}`,
     })
   );
   let secondMappedResult = mensCategories.categories[1].categories.map(
     (categoryItem) => ({
       imagePath: 'images/' + categoryItem.image,
       name: categoryItem.name,
-      idLink: `http://localhost:3000/mensClothing/${categoryItem.id}`,
+      idLink: `${process.env.CYCLIC_URL}/mensClothing/${categoryItem.id}`,
     })
   );
 
@@ -36,13 +36,13 @@ router.get('/', async function (req, res, next) {
   let link = req.protocol + '://' + req.get('host') + req.originalUrl;
   let breadcrumbs = [];
 
-  if ('http://localhost:3000/mensClothing/' === link) {
+  if (`${process.env.CYCLIC_URL}/mensClothing/` === link) {
     let object1 = {};
-    object1.link = 'http://localhost:3000';
+    object1.link = `${process.env.CYCLIC_URL}`;
     object1.name = 'Home';
     breadcrumbs.push(object1);
     let object2 = {};
-    object2.link = 'http://localhost:3000/mensClothing';
+    object2.link = `${process.env.CYCLIC_URL}/mensClothing`;
     object2.name = 'Mens Clothing';
     breadcrumbs.push(object2);
   }
