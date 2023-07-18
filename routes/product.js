@@ -20,12 +20,18 @@ router.get('/', async function (req, res, next) {
   let link = req.protocol + '://' + req.get('host') + req.originalUrl;
 
   //URL Manipulation
-
   let id = link.split('Clothing/').pop();
 
   id = id.split('/');
   let id1 = id[0];
   let id2 = id[1];
+  if (id2.includes('%20')) {
+    id2 = id2.replace(/%20/g, ' ');
+    link = link.replace(/%20/g, ' ');
+  } else {
+    id2 = id2.replace(/_/g, ' ');
+    link = link.replace(/_/g, ' ');
+  }
 
   //breadcrumbs
   let breadcrumbs = [];
