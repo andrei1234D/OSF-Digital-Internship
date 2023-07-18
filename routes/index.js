@@ -4,6 +4,7 @@ require('dotenv').config();
 
 /* GET home page. */
 let womansCategoriesButton = process.env.CYCLIC_URL + '/womansClothing';
+console.log(womansCategoriesButton);
 let mensCategoriesButton = process.env.CYCLIC_URL + '/mensClothing';
 router.get('/', async function (req, res, next) {
   let link = req.protocol + '://' + req.get('host') + req.originalUrl;
