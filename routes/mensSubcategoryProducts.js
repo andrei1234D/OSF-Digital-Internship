@@ -13,7 +13,7 @@ const retrieveDocument = async () => {
 router.get('/', async function (req, res, next) {
   let link = req.protocol + '://' + req.get('host') + req.originalUrl;
 
-  let id = link.split('cyclic.app/').pop();
+  let id = link.split(process.env.SPLIT_KEY).pop();
   id = id.split('/');
   console.log(id);
   let breadcrumbs = [];

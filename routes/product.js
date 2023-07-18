@@ -14,6 +14,8 @@ const retrieveDocument = async () => {
 let clothingCategory;
 
 router.get('/', async function (req, res, next) {
+  const product = await retrieveDocument();
+
   //Getting the link
   let link = req.protocol + '://' + req.get('host') + req.originalUrl;
 
@@ -23,7 +25,6 @@ router.get('/', async function (req, res, next) {
   id = id.split('/');
   let id1 = id[0];
   let id2 = id[1];
-  console.log(id);
   if (id2.includes('%20')) {
     id2 = id2.replace(/%20/g, ' ');
     link = link.replace(/%20/g, ' ');
@@ -34,7 +35,6 @@ router.get('/', async function (req, res, next) {
 
   //breadcrumbs
   let breadcrumbs = [];
-
   if (`${process.env.CYCLIC_URL}/mensClothing/${id1}/${id2}` === link) {
     clothingCategory = true;
     let object = {};
@@ -74,8 +74,6 @@ router.get('/', async function (req, res, next) {
     object6.name = id2;
     breadcrumbs.push(object6);
   }
-
-  const product = await retrieveDocument();
   let mappedResult = {};
   product.map((item) => {
     if (item.name === id2) {
@@ -86,6 +84,8 @@ router.get('/', async function (req, res, next) {
         '/mensClothing/images/' + item.image_groups[0].images[0].link;
     }
   });
+  console.log(breadcrumbs);
+
   res.render('product', {
     title: 'Robbing City Galati',
     currentUrl: breadcrumbs,
