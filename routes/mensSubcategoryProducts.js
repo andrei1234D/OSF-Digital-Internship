@@ -1,6 +1,6 @@
 var express = require('express');
-const { map } = require('../app');
 var router = express.Router();
+require('dotenv').config();
 
 let uri = process.env.API_KEY;
 const retrieveDocument = async () => {
