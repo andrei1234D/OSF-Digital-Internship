@@ -3,12 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "dotenv": "^16.3.1"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
-    "dotenv": "^16.3.1",
     "ejs": "^3.1.9",
     "env-cmd": "^10.1.0",
     "express": "^4.18.2",

@@ -8,7 +8,7 @@ router.get('/', async function (req, res, next) {
   let breadcrumbs = [];
   if (link === process.env.CYCLIC_URL) {
     let object = {};
-    object.link = 'http://localhost:3000';
+    object.link = `${process.env[CYCLE_URL]}`;
     object.name = 'Home';
     breadcrumbs.push(object);
   }
@@ -16,8 +16,8 @@ router.get('/', async function (req, res, next) {
   res.render('index', {
     title: 'Robbing City Galati',
     currentUrl: breadcrumbs,
-    menButtonLink: process.env.CYCLIC_URL + '/mensClothing',
-    womanButtonLink: process.env.CYCLIC_URL + '/womansClothing',
+    menButtonLink: process.env[CYCLIC_URL] + '/mensClothing',
+    womanButtonLink: process.env[CYCLIC_URL] + '/womansClothing',
   });
 });
 
