@@ -21,20 +21,12 @@ router.get('/', async function (req, res, next) {
 
   //URL Manipulation
 
-  console.log(link);
   let id = link.split('Clothing/').pop();
 
   id = id.split('/');
   let id1 = id[0];
   let id2 = id[1];
-  if (id2.includes('%20')) {
-    id2 = id2.replace(/%20/g, ' ');
-    link = link.replace(/%20/g, ' ');
-  } else {
-    id2 = id2.replace(/_/g, ' ');
-    link = link.replace(/_/g, ' ');
-  }
-  console.log(`${process.env.CYCLIC_URL}/mensClothing/${id1}/${id2}`);
+
   //breadcrumbs
   let breadcrumbs = [];
   if (`${process.env.CYCLIC_URL}/mensClothing/${id1}/${id2}` === link) {
