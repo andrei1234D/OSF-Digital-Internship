@@ -17,7 +17,7 @@ router.get('/', async function (req, res, next) {
     (categoryItem) => ({
       imagePath: 'images/' + categoryItem.image,
       name: categoryItem.name,
-      idLink: `http://localhost:3000/mensClothing/${categoryItem.id}`,
+      idLink: `https://long-lime-tick-hose.cyclic.app/mensClothing/${categoryItem.id}`,
     })
   );
   let secondMappedResult = mensCategories.categories[1].categories.map(
