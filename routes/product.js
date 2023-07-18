@@ -11,7 +11,7 @@ const retrieveDocument = async () => {
 };
 /* GET home page. */
 
-let clothingCategory;
+let clothingCategory = false;
 
 router.get('/', async function (req, res, next) {
   const product = await retrieveDocument();
@@ -20,7 +20,7 @@ router.get('/', async function (req, res, next) {
   let link = req.protocol + '://' + req.get('host') + req.originalUrl;
 
   //URL Manipulation
-  let id = link.split('Clothing/').pop();
+  let id = link.split('/mensClothing/').pop();
 
   id = id.split('/');
   let id1 = id[0];
@@ -56,7 +56,6 @@ router.get('/', async function (req, res, next) {
   } else if (
     `${process.env.CYCLIC_URL}/womansClothing/${id1}/${id2}` === link
   ) {
-    clothingCategory = false;
     let object = {};
     object.link = `${process.env.CYCLIC_URL}`;
     object.name = 'Home';
