@@ -1,6 +1,5 @@
 var express = require('express');
-var router = express.Router();
-
+require('dotenv').config();
 /* GET home page. */
 router.get('/', async function (req, res, next) {
   let link = req.protocol + '://' + req.get('host') + req.originalUrl;
