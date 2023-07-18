@@ -4,7 +4,8 @@ require('dotenv').config();
 
 const retrieveDocument = async () => {
   var mongoose = require('mongoose');
-  mongoose.connect(process.env.API_KEY);
+  uri = process.env.CYCLIC_URL;
+  mongoose.connect(uri);
   const CategoriesModel = require('../models/categories');
   return await CategoriesModel.findOne({ name: 'Mens' });
 };
