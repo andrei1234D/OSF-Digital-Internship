@@ -15,7 +15,7 @@ router.get('/', async function (req, res, next) {
   let link = req.protocol + '://' + req.get('host') + req.originalUrl;
 
   //URL Manipulation
-  let id = link.split('Clothing/').pop();
+  let id = link.split('cyclic.app/').pop();
 
   id = id.split('/');
   let id1 = id[0];
