@@ -13,7 +13,7 @@ const retrieveDocument = async () => {
 router.get('/', async function (req, res, next) {
   let link = req.protocol + '://' + req.get('host') + req.originalUrl;
 
-  let id = link.split('3000/').pop();
+  let id = link.split('cyclic.app/').pop();
   id = id.split('/');
   console.log(id);
   let breadcrumbs = [];
@@ -60,7 +60,7 @@ router.get('/', async function (req, res, next) {
       object.short_description = item.short_description;
       object.imagePath = 'images/' + item.image_groups[0].images[0].link;
       if (id[0] === 'mensClothing') {
-        object.productLink = `h${process.env.CYCLIC_URL}/mensClothing/${
+        object.productLink = `${process.env.CYCLIC_URL}/mensClothing/${
           id[1]
         }/${item.name.replace(/ /g, '_')}`;
       } else {
