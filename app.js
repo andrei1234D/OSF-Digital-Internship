@@ -31,9 +31,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/', indexRouter);
+
+app.use(`${process.env.CYCLIC_URL}`, indexRouter);
 app.use('/users', usersRouter);
-app.use(`/${process.env['CYCLIC_URL']}/mensClothing`, mensClothingRouter);
+app.use('/mensClothing', mensClothingRouter);
 app.use('/mensClothing/:id', subCategoryProductsRouter);
 app.use('/womansClothing/:id', subCategoryProductsRouter);
 app.use('/mensClothing/:id/:productId', productRouter);
