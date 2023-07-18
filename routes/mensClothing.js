@@ -35,8 +35,6 @@ router.get('/', async function (req, res, next) {
   mappedResult.mensAccessories.subcategory_name = 'Mens Accesories';
   let breadcrumbs = [];
 
-  console.log(mappedResult);
-
   let object1 = {};
   object1.link = `${process.env.CYCLIC_URL}`;
   object1.name = 'Home';

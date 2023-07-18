@@ -71,7 +71,6 @@ router.get('/', async function (req, res, next) {
       mappedResult.push(object);
     }
   });
-  console.log('mapped result is: ' + mappedResult);
   res.render('mensSubcategoryProducts', {
     title: 'Robbing City Galati',
     currentUrl: breadcrumbs,

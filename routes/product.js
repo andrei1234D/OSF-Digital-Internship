@@ -11,7 +11,7 @@ const retrieveDocument = async () => {
 };
 /* GET home page. */
 
-let clothingCategory = false;
+let clothingCategory;
 
 router.get('/', async function (req, res, next) {
   //Getting the link
@@ -23,7 +23,7 @@ router.get('/', async function (req, res, next) {
   id = id.split('/');
   let id1 = id[0];
   let id2 = id[1];
-
+  console.log(id);
   if (id2.includes('%20')) {
     id2 = id2.replace(/%20/g, ' ');
     link = link.replace(/%20/g, ' ');
@@ -56,6 +56,7 @@ router.get('/', async function (req, res, next) {
   } else if (
     `${process.env.CYCLIC_URL}/womansClothing/${id1}/${id2}` === link
   ) {
+    clothingCategory = false;
     let object = {};
     object.link = `${process.env.CYCLIC_URL}`;
     object.name = 'Home';
@@ -85,7 +86,6 @@ router.get('/', async function (req, res, next) {
         '/mensClothing/images/' + item.image_groups[0].images[0].link;
     }
   });
-  console.log(mappedResult);
   res.render('product', {
     title: 'Robbing City Galati',
     currentUrl: breadcrumbs,
