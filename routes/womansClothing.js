@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
-require('dotenv').config();
+let uri = process.env.API_KEY;
 const retrieveDocument = async () => {
   var mongoose = require('mongoose');
-  mongoose.connect(process.env.API_KEY);
+  mongoose.connect(uri);
   const CategoriesModel = require('../models/categories');
   return await CategoriesModel.findOne({ name: 'Womens' });
 };
@@ -17,21 +17,21 @@ router.get('/', async function (req, res, next) {
     (categoryItem) => ({
       imagePath: 'images/' + categoryItem.image,
       name: categoryItem.name,
-      idLink: `${process.env.CYCLIC_URL}/womansClothing/${categoryItem.id}`,
+      idLink: `http://localhost:3000/womansClothing/${categoryItem.id}`,
     })
   );
   let secondMappedResult = mensCategories.categories[1].categories.map(
     (categoryItem) => ({
       imagePath: 'images/' + categoryItem.image,
       name: categoryItem.name,
-      idLink: `${process.env.CYCLIC_URL}/womansClothing/${categoryItem.id}`,
+      idLink: `http://localhost:3000/womansClothing/${categoryItem.id}`,
     })
   );
   let thirdMappedResult = mensCategories.categories[2].categories.map(
     (categoryItem) => ({
       imagePath: 'images/' + categoryItem.image,
       name: categoryItem.name,
-      idLink: `${process.env.CYCLIC_URL}/womansClothing/${categoryItem.id}`,
+      idLink: `http://localhost:3000/womansClothing/${categoryItem.id}`,
     })
   );
 
@@ -47,13 +47,13 @@ router.get('/', async function (req, res, next) {
 
   console.log(mappedResult);
 
-  if (`${process.env.CYCLIC_URL}/womansClothing/` === link) {
+  if ('http://localhost:3000/womansClothing/' === link) {
     let object1 = {};
-    object1.link = `${process.env.CYCLIC_URL}`;
+    object1.link = 'http://localhost:3000';
     object1.name = 'Home';
     breadcrumbs.push(object1);
     let object2 = {};
-    object2.link = `${process.env.CYCLIC_URL}/womansClothing`;
+    object2.link = 'http://localhost:3000/womansClothing';
     object2.name = 'Womans Clothing';
     breadcrumbs.push(object2);
   }

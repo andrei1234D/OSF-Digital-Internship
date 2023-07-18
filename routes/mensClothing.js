@@ -2,9 +2,9 @@ var express = require('express');
 var router = express.Router();
 require('dotenv').config();
 
+let uri = process.env.API_KEY;
 const retrieveDocument = async () => {
   var mongoose = require('mongoose');
-  uri = process.env.CYCLIC_URL;
   mongoose.connect(uri);
   const CategoriesModel = require('../models/categories');
   return await CategoriesModel.findOne({ name: 'Mens' });
@@ -12,20 +12,19 @@ const retrieveDocument = async () => {
 /* GET users listing. */
 router.get('/', async function (req, res, next) {
   const mensCategories = await retrieveDocument();
-  console.log(mensCategories);
   //2 mappings to add the image paths and the names of thee subcategories and link id's
   let firstMappedResult = mensCategories.categories[0].categories.map(
     (categoryItem) => ({
       imagePath: 'images/' + categoryItem.image,
       name: categoryItem.name,
-      idLink: `${process.env.CYCLIC_URL}/mensClothing/${categoryItem.id}`,
+      idLink: `http://localhost:3000/mensClothing/${categoryItem.id}`,
     })
   );
   let secondMappedResult = mensCategories.categories[1].categories.map(
     (categoryItem) => ({
       imagePath: 'images/' + categoryItem.image,
       name: categoryItem.name,
-      idLink: `${process.env.CYCLIC_URL}/mensClothing/${categoryItem.id}`,
+      idLink: `http://localhost:3000/mensClothing/${categoryItem.id}`,
     })
   );
 
@@ -37,13 +36,15 @@ router.get('/', async function (req, res, next) {
   let link = req.protocol + '://' + req.get('host') + req.originalUrl;
   let breadcrumbs = [];
 
-  if (`${process.env.CYCLIC_URL}/mensClothing/` === link) {
+  console.log(mappedResult);
+
+  if ('http://localhost:3000/mensClothing/' === link) {
     let object1 = {};
-    object1.link = `${process.env.CYCLIC_URL}`;
+    object1.link = 'http://localhost:3000';
     object1.name = 'Home';
     breadcrumbs.push(object1);
     let object2 = {};
-    object2.link = `${process.env.CYCLIC_URL}/mensClothing`;
+    object2.link = 'http://localhost:3000/mensClothing';
     object2.name = 'Mens Clothing';
     breadcrumbs.push(object2);
   }
