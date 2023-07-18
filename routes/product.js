@@ -20,7 +20,9 @@ router.get('/', async function (req, res, next) {
   let link = req.protocol + '://' + req.get('host') + req.originalUrl;
 
   //URL Manipulation
-  let id = link.split('/mensClothing/').pop();
+
+  console.log(link);
+  let id = link.split('Clothing/').pop();
 
   id = id.split('/');
   let id1 = id[0];
@@ -32,7 +34,7 @@ router.get('/', async function (req, res, next) {
     id2 = id2.replace(/_/g, ' ');
     link = link.replace(/_/g, ' ');
   }
-
+  console.log(`${process.env.CYCLIC_URL}/mensClothing/${id1}/${id2}`);
   //breadcrumbs
   let breadcrumbs = [];
   if (`${process.env.CYCLIC_URL}/mensClothing/${id1}/${id2}` === link) {
