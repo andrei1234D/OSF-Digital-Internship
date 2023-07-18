@@ -10,12 +10,15 @@ const retrieveDocument = async () => {
   return await ProductModel.find();
 };
 /* GET home page. */
+
+let clothingCategory = false;
+
 router.get('/', async function (req, res, next) {
   //Getting the link
   let link = req.protocol + '://' + req.get('host') + req.originalUrl;
 
   //URL Manipulation
-  let id = link.split('cyclic.app/').pop();
+  let id = link.split('Clothing/').pop();
 
   id = id.split('/');
   let id1 = id[0];
@@ -31,7 +34,7 @@ router.get('/', async function (req, res, next) {
 
   //breadcrumbs
   let breadcrumbs = [];
-  let clothingCategory = false;
+
   if (`${process.env.CYCLIC_URL}/mensClothing/${id1}/${id2}` === link) {
     clothingCategory = true;
     let object = {};
