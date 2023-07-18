@@ -1,5 +1,7 @@
 var express = require('express');
 require('dotenv').config();
+var router = express.Router();
+console.log(process.env.API_KEY);
 /* GET home page. */
 router.get('/', async function (req, res, next) {
   let link = req.protocol + '://' + req.get('host') + req.originalUrl;
