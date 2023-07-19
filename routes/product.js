@@ -18,7 +18,6 @@ router.get('/', async function (req, res, next) {
 
   //Getting the link
   let link = req.protocol + '://' + req.get('host') + req.originalUrl;
-  console.log(`THE LINK IN VARIABLE LINK IS:  ${link}`);
 
   //URL Manipulation
   let id = link.split('Clothing/').pop();
@@ -33,10 +32,6 @@ router.get('/', async function (req, res, next) {
     id2 = id2.replace(/_/g, ' ');
     link = link.replace(/_/g, ' ');
   }
-
-  console.log(
-    `THE CYCLIC URL IS:  ${process.env.CYCLIC_URL}/mensClothing/${id1}/${id2}`
-  );
 
   //breadcrumbs
   let breadcrumbs = [];
@@ -88,6 +83,10 @@ router.get('/', async function (req, res, next) {
         '/mensClothing/images/' + item.image_groups[0].images[0].link;
     }
   });
+  console.log(`THE LINK IN VARIABLE LINK IS:  ${link}`);
+  console.log(
+    `THE CYCLIC URL IS:  ${process.env.CYCLIC_URL}/mensClothing/${id1}/${id2}`
+  );
   console.log(breadcrumbs);
 
   res.render('product', {
