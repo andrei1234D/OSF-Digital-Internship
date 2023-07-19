@@ -30,9 +30,9 @@ router.get('/', async function (req, res, next) {
 
   let mappedResult = {};
   mappedResult.mensClothing = firstMappedResult;
-  mappedResult.mensClothing.subcategory_name = 'Mens Clothing';
+  mappedResult.mensClothing.subcategory_name = "Men's Clothing";
   mappedResult.mensAccessories = secondMappedResult;
-  mappedResult.mensAccessories.subcategory_name = 'Mens Accesories';
+  mappedResult.mensAccessories.subcategory_name = "Men's Accessories";
   let breadcrumbs = [];
 
   let object1 = {};
