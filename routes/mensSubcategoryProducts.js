@@ -26,7 +26,7 @@ router.get('/', async function (req, res, next) {
       breadcrumbs.push(object1);
       let object2 = {};
       object2.link = `${process.env.CYCLIC_URL}/womansClothing`;
-      object2.name = 'Womans Clothing';
+      object2.name = "women's Clothing";
       breadcrumbs.push(object2);
       let object3 = {};
       object3.link = `${process.env.CYCLIC_URL}/womansClothing/${id[1]}`;
@@ -42,7 +42,7 @@ router.get('/', async function (req, res, next) {
       breadcrumbs.push(object4);
       let object5 = {};
       object5.link = `${process.env.CYCLIC_URL}/mensClothing`;
-      object5.name = 'Mens Clothing';
+      object5.name = "Men's Clothing";
       breadcrumbs.push(object5);
       let object6 = {};
       object6.link = `${process.env.CYCLIC_URL}/mensClothing/${id[1]}`;
