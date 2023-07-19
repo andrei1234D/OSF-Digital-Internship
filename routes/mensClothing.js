@@ -44,7 +44,7 @@ router.get('/', async function (req, res, next) {
   object2.name = 'Mens Clothing';
   breadcrumbs.push(object2);
   res.render('subCategories', {
-    categoryName: 'Mens',
+    categoryName: "Men's",
     title: 'Robbing City Galati',
     subcategories: mappedResult,
     currentUrl: breadcrumbs,
