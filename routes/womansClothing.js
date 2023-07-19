@@ -8,6 +8,10 @@ const retrieveDocument = async () => {
   const CategoriesModel = require('../models/categories');
   return await CategoriesModel.findOne({ name: 'Womens' });
 };
+
+let womansCategoriesButton = process.env.CYCLIC_URL + '/womansClothing';
+let mensCategoriesButton = process.env.CYCLIC_URL + '/mensClothing';
+
 /* GET users listing. */
 router.get('/', async function (req, res, next) {
   const mensCategories = await retrieveDocument();
@@ -64,6 +68,8 @@ router.get('/', async function (req, res, next) {
     currentUrl: breadcrumbs,
     clothingCategory: false,
     category_description: mensCategories.page_description,
+    womanButton: womansCategoriesButton,
+    mensButton: mensCategoriesButton,
   });
 });
 

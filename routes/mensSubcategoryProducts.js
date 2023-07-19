@@ -9,6 +9,9 @@ const retrieveDocument = async () => {
   const ProductModel = require('../models/product');
   return await ProductModel.find();
 };
+let womansCategoriesButton = process.env.CYCLIC_URL + '/womansClothing';
+let mensCategoriesButton = process.env.CYCLIC_URL + '/mensClothing';
+
 /* GET home page. */
 router.get('/', async function (req, res, next) {
   let link = req.protocol + '://' + req.get('host') + req.originalUrl;
@@ -76,6 +79,8 @@ router.get('/', async function (req, res, next) {
     currentUrl: breadcrumbs,
     product: mappedResult,
     clothingCategory: clothingCategory,
+    womanButton: womansCategoriesButton,
+    mensButton: mensCategoriesButton,
   });
 });
 

@@ -10,6 +10,9 @@ const retrieveDocument = async () => {
   return await CategoriesModel.findOne({ name: 'Mens' });
 };
 /* GET users listing. */
+let womansCategoriesButton = process.env.CYCLIC_URL + '/womansClothing';
+let mensCategoriesButton = process.env.CYCLIC_URL + '/mensClothing';
+
 router.get('/', async function (req, res, next) {
   const mensCategories = await retrieveDocument();
   //2 mappings to add the image paths and the names of thee subcategories and link id's
@@ -52,6 +55,8 @@ router.get('/', async function (req, res, next) {
     currentUrl: breadcrumbs,
     clothingCategory: true,
     category_description: mensCategories.page_description,
+    womanButton: womansCategoriesButton,
+    mensButton: mensCategoriesButton,
   });
 });
 

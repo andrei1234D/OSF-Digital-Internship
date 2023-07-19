@@ -6,7 +6,6 @@ require('dotenv').config();
 let womansCategoriesButton = process.env.CYCLIC_URL + '/womansClothing';
 let mensCategoriesButton = process.env.CYCLIC_URL + '/mensClothing';
 router.get('/', async function (req, res, next) {
-  let link = req.protocol + '://' + req.get('host') + req.originalUrl;
   let breadcrumbs = [];
   let object = {};
   object.link = `${process.env.CYCLIC_URL}`;

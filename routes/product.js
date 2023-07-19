@@ -12,6 +12,8 @@ const retrieveDocument = async () => {
 /* GET home page. */
 
 let clothingCategory = false;
+let womansCategoriesButton = process.env.CYCLIC_URL + '/womansClothing';
+let mensCategoriesButton = process.env.CYCLIC_URL + '/mensClothing';
 
 router.get('/', async function (req, res, next) {
   const product = await retrieveDocument();
@@ -94,6 +96,8 @@ router.get('/', async function (req, res, next) {
     currentUrl: breadcrumbs,
     product: mappedResult,
     clothingCategory: clothingCategory,
+    womanButton: womansCategoriesButton,
+    mensButton: mensCategoriesButton,
   });
 });
 
