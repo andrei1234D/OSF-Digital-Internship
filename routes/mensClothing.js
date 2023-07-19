@@ -41,7 +41,7 @@ router.get('/', async function (req, res, next) {
   breadcrumbs.push(object1);
   let object2 = {};
   object2.link = `${process.env.CYCLIC_URL}/mensClothing`;
-  object2.name = 'Mens Clothing';
+  object2.name = "Men's Clothing";
   breadcrumbs.push(object2);
   res.render('subCategories', {
     categoryName: "Men's",
