@@ -18,6 +18,7 @@ router.get('/', async function (req, res, next) {
       imagePath: 'images/' + categoryItem.image,
       name: categoryItem.name,
       idLink: `${process.env.CYCLIC_URL}/mensClothing/${categoryItem.id}`,
+      subcategory_description: categoryItem.page_description,
     })
   );
   let secondMappedResult = mensCategories.categories[1].categories.map(
@@ -25,9 +26,10 @@ router.get('/', async function (req, res, next) {
       imagePath: 'images/' + categoryItem.image,
       name: categoryItem.name,
       idLink: `${process.env.CYCLIC_URL}/mensClothing/${categoryItem.id}`,
+      subcategory_description: categoryItem.page_description,
     })
   );
-
+  console.log(mensCategories.page_description);
   let mappedResult = {};
   mappedResult.mensClothing = firstMappedResult;
   mappedResult.mensClothing.subcategory_name = "Men's Clothing";
@@ -49,6 +51,7 @@ router.get('/', async function (req, res, next) {
     subcategories: mappedResult,
     currentUrl: breadcrumbs,
     clothingCategory: true,
+    category_description: mensCategories.page_description,
   });
 });
 

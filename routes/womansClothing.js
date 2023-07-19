@@ -18,6 +18,7 @@ router.get('/', async function (req, res, next) {
       imagePath: 'images/' + categoryItem.image,
       name: categoryItem.name,
       idLink: `${process.env.CYCLIC_URL}/womansClothing/${categoryItem.id}`,
+      subcategory_description: categoryItem.page_description,
     })
   );
   let secondMappedResult = mensCategories.categories[1].categories.map(
@@ -25,6 +26,7 @@ router.get('/', async function (req, res, next) {
       imagePath: 'images/' + categoryItem.image,
       name: categoryItem.name,
       idLink: `${process.env.CYCLIC_URL}/womansClothing/${categoryItem.id}`,
+      subcategory_description: categoryItem.page_description,
     })
   );
   let thirdMappedResult = mensCategories.categories[2].categories.map(
@@ -32,6 +34,7 @@ router.get('/', async function (req, res, next) {
       imagePath: 'images/' + categoryItem.image,
       name: categoryItem.name,
       idLink: `${process.env.CYCLIC_URL}/womansClothing/${categoryItem.id}`,
+      subcategory_description: categoryItem.page_description,
     })
   );
 
@@ -55,11 +58,12 @@ router.get('/', async function (req, res, next) {
   breadcrumbs.push(object2);
 
   res.render('subCategories', {
-    categoryName: "women's",
+    categoryName: "Women's",
     title: 'Robbing City Galati',
     subcategories: mappedResult,
     currentUrl: breadcrumbs,
     clothingCategory: false,
+    category_description: mensCategories.page_description,
   });
 });
 
