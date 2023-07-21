@@ -11,7 +11,7 @@ const retrieveDocument = async () => {
 };
 /* GET home page. */
 
-let clothingCategory = false;
+let clothingCategory = true;
 let womansCategoriesButton = process.env.CYCLIC_URL + '/womansClothing';
 let mensCategoriesButton = process.env.CYCLIC_URL + '/mensClothing';
 
@@ -19,7 +19,7 @@ router.get('/', async function (req, res, next) {
   const product = await retrieveDocument();
 
   //Getting the link
-  let link = req.protocol + 's://' + req.get('host') + req.originalUrl; //THE S
+  let link = req.protocol + '://' + req.get('host') + req.originalUrl; //THE S
 
   //URL Manipulation
   let id = link.split('Clothing/').pop();
@@ -37,6 +37,8 @@ router.get('/', async function (req, res, next) {
 
   //breadcrumbs
   let breadcrumbs = [];
+  console.log(`${process.env.CYCLIC_URL}/mensClothing/${id1}/${id2}`);
+  console.log(link);
   if (`${process.env.CYCLIC_URL}/mensClothing/${id1}/${id2}` === link) {
     clothingCategory = true;
     let object = {};
@@ -58,6 +60,7 @@ router.get('/', async function (req, res, next) {
   } else if (
     `${process.env.CYCLIC_URL}/womansClothing/${id1}/${id2}` === link
   ) {
+    clothingCategory = false;
     let object = {};
     object.link = `${process.env.CYCLIC_URL}`;
     object.name = 'Home';
@@ -85,11 +88,6 @@ router.get('/', async function (req, res, next) {
         '/mensClothing/images/' + item.image_groups[0].images[0].link;
     }
   });
-  console.log(`THE LINK IN VARIABLE LINK IS:  ${link}`);
-  console.log(
-    `THE CYCLIC URL IS:  ${process.env.CYCLIC_URL}/mensClothing/${id1}/${id2}`
-  );
-  console.log(breadcrumbs);
 
   res.render('product', {
     title: 'Robbing City Galati',

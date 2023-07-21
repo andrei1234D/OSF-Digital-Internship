@@ -36,7 +36,6 @@ router.get('/', async function (req, res, next) {
       object3.name = id[1];
       breadcrumbs.push(object3);
       break;
-    default:
     case `${process.env.CYCLIC_URL}/mensClothing/${id[1]}`:
       clothingCategory = true;
       let object4 = {};
