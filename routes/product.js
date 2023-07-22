@@ -19,7 +19,7 @@ router.get('/', async function (req, res, next) {
   const product = await retrieveDocument();
 
   //Getting the link
-  let link = req.protocol + '://' + req.get('host') + req.originalUrl; //THE S
+  let link = req.protocol + 's://' + req.get('host') + req.originalUrl; //THE S
 
   //URL Manipulation
   let id = link.split('Clothing/').pop();
