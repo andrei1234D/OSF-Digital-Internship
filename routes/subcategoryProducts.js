@@ -16,7 +16,7 @@ let mensCategoriesButton = process.env.CYCLIC_URL + '/mensClothing';
 let clothingCategory = false;
 
 router.get('/', async function (req, res, next) {
-  let link = req.protocol + '://' + req.get('host') + req.originalUrl;
+  let link = req.protocol + 's://' + req.get('host') + req.originalUrl; //THE S
 
   let id = link.split(process.env.SPLIT_KEY).pop();
   id = id.split('/');
@@ -52,10 +52,6 @@ router.get('/', async function (req, res, next) {
       breadcrumbs.push(object6);
       break;
   }
-  console.log(`link is: ${link}`);
-  console.log(
-    `cyclic link is: ${process.env.CYCLIC_URL}/mensClothing/${id[1]}`
-  );
 
   const product = await retrieveDocument();
   let mappedResult = [];
