@@ -29,6 +29,57 @@ box-shadow: 0 10px 25px rgb(1 1 1/ 20%)}
  padding: 10px;
  margin-top: auto}
 
+
+.pagination{
+display:flex;
+justify-content: center;
+margin:30px 30px 60px;
+user-select: none;
+}
+.pagination li{
+  display:inline-block;
+  margin:5px;
+  box-shadow:0 5px 25px rgb(1 1 1/10%);
+  text-align:center;
+}
+.previous-page,.next-page{
+background:#0AB1CE;
+width:80px;
+border-radius:45px;
+cursor:pointer;
+transition:0.3s ease;
+
+}
+.previous-page:hover{
+  transform:translateX(-5px);
+}
+.next-page:hover{
+  transform:translateX(5px);
+}
+
+
+.current-page, .dots{
+  background:#ccc;
+    width:45px;
+   border-radius:50%;
+   cursor:pointer; 
+
+}
+.pagination li a{
+  color:#fff;
+  text-decoration:none;
+  font-size:1.2em;
+  line-height:45px;
+   
+}
+.active{
+  background:#0AB1CE;
+}
+.disable{
+  background:#fff;
+}
+
+
 </style>
 
 {{#if product.length}}
@@ -42,6 +93,7 @@ box-shadow: 0 10px 25px rgb(1 1 1/ 20%)}
   <h1 style="text-align:center;font-size:64;margin-top:10%;color:red">OUT OF STOCK</h1>
   <h1 style="text-align:center;font-size:32;color:green">( We're Sorry )</h1>
 {{/if}}
+<div id="cardContainer+Pagination">
 <div class="cardContainer">
 {{#each product}}
 {{#if this.name}}
@@ -55,10 +107,48 @@ box-shadow: 0 10px 25px rgb(1 1 1/ 20%)}
     <div class="rightBottomContainer">
  <div style="margin-right: 10px;font-size:20px">{{this.price}} USD</div>   
  <div style="margin: 0;"><a href='{{this.productLink}}'><button style="width:100px;height:30px;font-size:15px;border-radius:50px;background-color:rgb(193, 189, 193);cursor:pointer"> more info</button></a></div>   
-</div></div></div>
+</div></div>
+</div>
 </div>
 {{/if}}
 {{/each}}
 </div>
-<div ></div>
+<div class="pagination">
+  <li class="page-item previous-page"><a class="page-link" href="#">Prev</a></li>
+  <li class="page-item current-page active"><a class="page-link" href="#">1</a></li>
+  <li class="page-item dots"><a class="page-link" href="#">...</a></li>
+  <li class="page-item current-page"><a class="page-link" href="#">5</a></li>
+  <li class="page-item content-page"><a class="page-link" href="#">6</a></li>
+  <li class="page-item dots"><a class="page-link" href="#">...</a></li>
+  <li class="page-item current-page"><a class="page-link" href="#">10</a></li>
+  <li class="page-item next-page"><a class="page-link" href="#">Next</a></li>
+   </div>
+</div>
 {{> footer}}
+
+<script>
+function getPageList(totalPages,page,maxLength){
+function range(start,end){
+return Array.from(Array(end-start+1), (_, i) => i+start);
+}
+
+let sideWidth=maxlength<9 ? 1:2
+let leftWidth=(maxLength-sideWidth*2-3)>>1;
+let rightWidth=(maxLength-sideWidth*2-3)>>1;
+if(totalPages<=maxLength){
+return range(1,totalPages)
+}
+if(page<=maxLength-sideWidth-1-rightWidth){
+  return range(1,maxLength-sideWidth-1).concat(0,range(totalPages-sideWidth+1,totalPages));
+}
+if(page>=totalPages-sideWidth-1-rightWidth){
+  return range(1,sideWidth).concat(0,range(totalPages-sideWidth-1-rightWidth-leftWidth,totalPages));
+}
+return range(1,sideWidth).concat(0,range(page-leftWidth,page+rightWidth),0,range(totalPages-sideWidth+1,totalPages));
+}
+
+
+$function(){
+  lt numberOfItems-$(".cardContainer .card").length
+}
+</script>

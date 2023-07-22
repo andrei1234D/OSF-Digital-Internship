@@ -52,6 +52,7 @@ router.get('/', async function (req, res, next) {
       breadcrumbs.push(object6);
       break;
   }
+  console.log(breadcrumbs);
   const product = await retrieveDocument();
   let mappedResult = [];
   product.map((item) => {
