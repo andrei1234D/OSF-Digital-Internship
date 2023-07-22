@@ -1,4 +1,8 @@
 {{> index}}
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" charset="utf-8"></script>
+
+</head>
 <style>
 .cardContainer{
 display: grid;
@@ -12,16 +16,23 @@ display: grid;
 }
 .productTitle{padding:3%;
 text-align:center}
-.card{display:flex;
-justify-content:center;
-box-shadow: 0 10px 25px rgb(1 1 1/ 20%)}
+
+.card{
+box-shadow: 0 10px 25px rgb(1 1 1/ 20%);
+width:85%;
+padding:1%;
+margin-bottom:10%;
+background-color: lightblue;
+}
+
 
 .rightContainer{
   flex: 2; 
-  background-color: lightblue;
    display: flex;
    flex-direction: column;
    justify-content: space-between;
+   margin-left:1%;
+
 }
 .rightBottomContainer{display: flex;
  justify-content: space-between;
@@ -58,15 +69,15 @@ transition:0.3s ease;
 }
 
 
-.current-page, .dots{
+.current-page,.dots{
   background:#ccc;
     width:45px;
    border-radius:50%;
-   cursor:pointer; 
+   cursor:pointer;
 
 }
 .pagination li a{
-  color:#fff;
+  color:#ccc;
   text-decoration:none;
   font-size:1.2em;
   line-height:45px;
@@ -76,7 +87,7 @@ transition:0.3s ease;
   background:#0AB1CE;
 }
 .disable{
-  background:#fff;
+  background:#ccc;
 }
 
 
@@ -93,46 +104,46 @@ transition:0.3s ease;
   <h1 style="text-align:center;font-size:64;margin-top:10%;color:red">OUT OF STOCK</h1>
   <h1 style="text-align:center;font-size:32;color:green">( We're Sorry )</h1>
 {{/if}}
-<div id="cardContainer+Pagination">
-<div class="cardContainer">
+<div class="cardContainerAndPagination">
+<div class="cardContainer" style="display:none">
 {{#each product}}
 {{#if this.name}}
-<div class="productTitle">
-  <p style="font-size:22px;">{{this.name}}</p>
-    <div class="card">
+<div class="card">
+  <p style="font-size:22px;text-align:center">{{this.name}}</p>
+    <div style="display:flex;">
 <img src='{{this.imagePath}}' alt='' style="" />
 <div class="rightContainer">
     <div>
     {{{this.short_description}}}</div>
     <div class="rightBottomContainer">
- <div style="margin-right: 10px;font-size:20px">{{this.price}} USD</div>   
- <div style="margin: 0;"><a href='{{this.productLink}}'><button style="width:100px;height:30px;font-size:15px;border-radius:50px;background-color:rgb(193, 189, 193);cursor:pointer"> more info</button></a></div>   
+ <div style="margin-right: 10px;font-size:15px;text-align:center">{{this.price}} USD</div>   
+ <div style="margin: 0;"><a href='{{this.productLink}}'><button style="width:80px;height:30px;font-size:15px;border-radius:50px;background-color:rgb(193, 189, 193);cursor:pointer"> more info</button></a></div>   
 </div></div>
 </div>
 </div>
 {{/if}}
 {{/each}}
 </div>
-<div class="pagination">
-  <li class="page-item previous-page"><a class="page-link" href="#">Prev</a></li>
+ <div class="pagination">
+  <li class="page-item previous-page active"><a class="page-link" href="#">Prev</a></li>
   <li class="page-item current-page active"><a class="page-link" href="#">1</a></li>
   <li class="page-item dots"><a class="page-link" href="#">...</a></li>
   <li class="page-item current-page"><a class="page-link" href="#">5</a></li>
   <li class="page-item current-page"><a class="page-link" href="#">6</a></li>
   <li class="page-item dots"><a class="page-link" href="#">...</a></li>
   <li class="page-item current-page"><a class="page-link" href="#">10</a></li>
-  <li class="page-item next-page"><a class="page-link" href="#">Next</a></li>
+  <li class="page-item next-page active"><a class="page-link" href="#">Next</a></li>
    </div>
-</div>
+</div> 
 {{> footer}}
 
-<script>
+<script type="text/javascript">
 function getPageList(totalPages,page,maxLength){
 function range(start,end){
 return Array.from(Array(end-start+1), (_, i) => i+start);
 }
 
-let sideWidth=maxlength<9 ? 1:2
+let sideWidth=maxLength<9 ? 1:2
 let leftWidth=(maxLength-sideWidth*2-3)>>1;
 let rightWidth=(maxLength-sideWidth*2-3)>>1;
 if(totalPages<=maxLength){
@@ -148,7 +159,46 @@ return range(1,sideWidth).concat(0,range(page-leftWidth,page+rightWidth),0,range
 }
 
 
-$function(){
-  lt numberOfItems-$(".cardContainer .card").length
-}
+$(function(){
+  let numberOfItems=$(".cardContainer .card").length
+  let limitPerPage=6;
+  let totalPages=Math.ceil(numberOfItems/limitPerPage);
+  let paginationSize=7  ;
+  let currentPage;
+
+  function showPage(whichPage) {
+if(whichPage<1||whichPage>totalPages) return false;
+
+       currentPage=whichPage;
+      $(".cardContainer .card").hide().slice((currentPage - 1) * limitPerPage, currentPage * limitPerPage).show();
+       
+       $(".pagination li").slice(1,-1).remove();
+       getPageList(totalPages,currentPage,paginationSize).forEach(item=>{
+        $("<li>").addClass("page-item").addClass(item ? "current-page" : "dots").toggleClass("active",item===currentPage).append($("<a>").addClass("page-link").attr({href: "javascript:void(0)"}).text(item || "...")).insertBefore(".next-page");
+          })
+
+       $(".previous-page").toggleClass("disable",currentPage===1);
+        $(".next-page").toggleClass("disable",currentPage===totalPages);
+        return true
+       }
+        $(".pagination").append(
+          $("<li>").addClass("page-item").addClass("previous-page").append($("<a>").addClass("page-link").attr({href: "javascript:void(0)"}).text("Prev")),
+          $("<li>").addClass("page-item").addClass("next-page").append($("<a>").addClass("page-link").attr({href: "javascript:void(0)"}).text("Next"))
+        )
+$(".cardContainer").show();
+showPage(1)
+$(document).on("click",".pagination li.current-page:not(.active)",function(){
+  return showPage(+$(this).text());
+})
+$(".next-page").on("click",function(){
+
+   return showPage(currentPage+1);
+})
+$(".previous-page").on("click",function(){
+
+   return showPage(currentPage-1);
+})
+
+})
+
 </script>
