@@ -21,6 +21,11 @@ router.get('/', async function (req, res, next) {
   console.log(id);
   let breadcrumbs = [];
   let clothingCategory = false;
+  console.log(`link is: ${link}`);
+  console.log(
+    `cyclic link is: ${process.env.CYCLIC_URL}/mensClothing/${id[1]}`
+  );
+
   switch (link) {
     case `${process.env.CYCLIC_URL}/womansClothing/${id[1]}`:
       let object1 = {};
