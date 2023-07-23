@@ -45,6 +45,16 @@ transition:0.6s ease;
  padding: 10px;
  margin-top: auto}
 
+.buttons{
+  box-shadow: 0 12px 16px 0 rgba(7, 158, 240, 0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+background-color:rgb(193, 189, 193);
+cursor:pointer;
+-webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  }
+.buttons:hover{
+  box-shadow: 0 12px 16px 0 rgba(9, 215, 112, 0.2),0 17px 50px 0 rgba(0,0,0,0.19);
+}
 
 .pagination{
 display:flex;
@@ -130,7 +140,7 @@ display: grid;
     {{{this.short_description}}}</div>
     <div class="rightBottomContainer">
  <div style="margin-right: 10px;font-size:15px;text-align:center">{{this.price}} USD</div>   
- <div style="margin: 0;"><a href='{{this.productLink}}'><button style="width:80px;height:30px;font-size:15px;border-radius:50px;background-color:rgb(193, 189, 193);cursor:pointer"> more info</button></a></div>   
+ <div style="margin: 0;"><a href='{{this.productLink}}'><button style="width:80px;height:30px;font-size:15px;border-radius:50px;" class="buttons"> more info</button></a></div>   
 </div></div>
 </div>
 </div>
