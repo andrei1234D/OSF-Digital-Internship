@@ -131,6 +131,7 @@ display: grid;
 </div>
 {{/if}}
 {{/each}}
+{{#if product.length}}
 </div>
  <div class="pagination">
   <li class="page-item previous-page active"><a class="page-link" href="#">Prev</a></li>
@@ -142,7 +143,8 @@ display: grid;
   <li class="page-item current-page"><a class="page-link" href="#">10</a></li>
   <li class="page-item next-page active"><a class="page-link" href="#">Next</a></li>
    </div>
-</div> 
+   {{/if}}
+   </div> 
 {{> footer}}
 
 <script type="text/javascript">
