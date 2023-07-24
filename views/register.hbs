@@ -43,9 +43,15 @@ cursor:pointer;
 }
 .block{
 display:flex;
-flex-direction:column
-
+flex-direction:column;
+width:40%;
 }
+
+.error-placeholder::placeholder{
+
+  color:red;
+}
+
 </style>
 <body>
   <div class='container'>
@@ -64,15 +70,15 @@ flex-direction:column
     <form>
       <div id='email-container' class='block'>
         <label>Email:</label>
-        <input type='email' />
+        <input type='email' id='emailInput' placeholder='example@example.com' />
       </div>
       <div class='block'>
         <label>Username:</label>
-        <input />
+        <input type='Username' id='usernameInput' placeholder='Username' />
       </div>
       <div class='block'>
         <label>Password:</label>
-        <input type='password' />
+        <input type='password' id='passwordInput' placeholder='Password' />
       </div>
       <div style='position:absolute;bottom:10px'>
         <button class='buttons' id='bottomButton'>Sign Up</button>
@@ -84,8 +90,17 @@ flex-direction:column
     const signUpBtn = document.getElementById('signup-btn'); 
     const loginBtn =document.getElementById('login-btn'); 
     const emailContainer =document.getElementById('email-container');
-    const bottomButton=document.getElementById("bottomButton")
-    
+    const bottomButton=document.getElementById("bottomButton");
+    const emailInput=document.getElementById('emailInput');
+    const usernameInput=document.getElementById('usernameInput');
+    const passwordInput=document.getElementById('passwordInput');
+    let usersArray=[];
+    let validCredentials=false;
+    let emailPattern=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    let validEmail=false;
+    let validUsername=false;
+    let validPassword=false;
+    let uniqueEmail=true;
     signUpBtn.addEventListener('click', () => {
       if(emailContainer.style.display==='none')
       { 
@@ -101,11 +116,74 @@ flex-direction:column
         bottomButton.textContent='Log In'
     });
 
-bottomButton.addEventListener('click', () => { 
-        console.log(`I am a very useful button`)
-         event.preventDefault()
-    });
+bottomButton.addEventListener('click', () => {
+  event.preventDefault();
+  if (bottomButton.textContent === 'Sign Up') {
+    // validate Email
+    const email = emailInput.value.trim();
+usersArray.forEach(item => {
+  if(item.email===email)
+     uniqueEmail=false
+});
+    if (emailPattern.test(email)) {
+      validEmail = true;
+      emailInput.value='';
+      emailInput.classList.remove('error-placeholder');
+      emailInput.placeholder = 'example@example.com';
+    }else{
+      validEmail=false
+      emailInput.value = '';
+      event.preventDefault();
+      emailInput.classList.add('error-placeholder');
+      emailInput.placeholder = 'Invalid E-mail';
+    }
+    if(uniqueEmail===false){
+    validEmail=false;
+    emailInput.value='';
+    emailInput.classList.add('error-placeholder');
+      emailInput.placeholder = 'E-mail already in use';
 
+    } 
+    
+    // validate username
+    const username = usernameInput.value.trim();
+    if (username.length >= 6) {
+      validUsername = true;
+      usernameInput.classList.remove('error-placeholder');
+      usernameInput.placeholder = 'Username';
+    } else {
+      usernameInput.value = '';
+      event.preventDefault();
+      usernameInput.classList.add('error-placeholder');
+      usernameInput.placeholder = 'Username must be at least 6 characters';
+    }
+    
+    // validate Password
+    const password = passwordInput.value.trim();
+    if (password.length >= 6) {
+      validPassword = true;
+      passwordInput.classList.remove('error-placeholder');
+      passwordInput.placeholder = 'Password';
+    } else {
+      passwordInput.value = '';
+      event.preventDefault();
+      passwordInput.classList.add('error-placeholder');
+      passwordInput.placeholder = 'Password must be at least 6 characters';
+    }
+    
+    // add user to database
+    if (validEmail && validUsername && validPassword) {
+      let object = {};   
+      object.email = email;
+      object.username = username;
+      object.password = password;
+      usersArray.push(object);
+      emailContainer.style.display ='none'; 
+         bottomButton.style.display = 'flex';
+        bottomButton.textContent='Log In'
+    }
+  }
+});
 
   </script>
 </body>
