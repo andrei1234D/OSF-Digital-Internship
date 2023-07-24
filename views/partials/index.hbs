@@ -21,7 +21,16 @@ a:link{
 a:hover{
 transition:0.4s;
 color:rgb(164, 210, 0);
-
+}
+.buttons{
+  box-shadow: 0 8px 8px 0 rgba(1, 1, 1, 0.1), 0 17px 50px 0 rgba(0,0,0,0.19);
+background-color:rgb(193, 189, 193);
+cursor:pointer;
+  transition: 0.6s ease;
+  border-radius:40px;
+  }
+.buttons:hover{
+  box-shadow: 0 8px 8px 0 rgba(255, 255, 255, 0.40)
 }
 
 </style>
@@ -32,22 +41,22 @@ color:rgb(164, 210, 0);
     {{#if clothingCategory}}
       <button
         onclick="window.location.href='{{mensButton}}';"
-        style='width:150px;height:50px;font-size:medium;border-radius:50px;background-color: #CCFFCC ;cursor:pointer'
+        style='width:150px;height:50px;font-size:medium;border-radius:50px;background-color: #CCFFCC ;cursor:pointer' class="buttons"
       >Men's Clothing</button>
     {{else}}
       <button
         onclick="window.location.href='{{mensButton}}';"
-        style='width:150px;height:50px;font-size:medium;border-radius:50px;background-color:rgb(193, 189, 193);cursor:pointer'
+        style='width:150px;height:50px;font-size:medium;border-radius:50px;background-color:rgb(193, 189, 193);cursor:pointer'class="buttons"
       >Men's Clothing</button>{{/if}}</div>
   {{#if clothingCategory}}
     <button
       onclick="window.location.href='{{womanButton}}';"
-      style='width:150px;height:50px;font-size:medium;border-radius:50px;background-color:rgb(193, 189, 193);cursor:pointer'
+      style='width:150px;height:50px;font-size:medium;border-radius:50px;background-color:rgb(193, 189, 193);cursor:pointer'class="buttons"
     >women's Clothing</button>
   {{else}}
     <button
       onclick="window.location.href='{{womanButton}}';"
-      style='width:150px;height:50px;font-size:medium;border-radius:50px;background-color: #CCFFCC;cursor:pointer'
+      style='width:150px;height:50px;font-size:medium;border-radius:50px;background-color: #CCFFCC;cursor:pointer'class="buttons"
     >women's Clothing</button>
   {{/if}}
 </div>

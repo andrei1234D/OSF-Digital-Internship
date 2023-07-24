@@ -1,0 +1,111 @@
+{{!-- prettier-ignore --}}
+<style>
+     body{
+  background:linear-gradient(60deg,lightgreen,lightblue) 
+  } 
+   
+   .container{
+    background-color:rgb(33, 174, 174); 
+    position:absolute;
+  top:30%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:50%;
+  height:250px;
+  box-shadow: 0 5px 25px rgb(255 255 255/40%);;
+ }
+  
+  .registration{
+  display:flex;
+  justify-content: space-around ;
+  margin-top:2%; 
+   }
+
+ form{display:flex;
+ flex-direction:column;
+ margin-top:5%;
+align-items:center
+ }
+ label{
+text-align: center;
+
+ }
+
+.buttons{
+  box-shadow: 0 8px 8px 0 rgba(1, 1, 1, 0.1), 0 17px 50px 0 rgba(0,0,0,0.19);
+background-color:rgb(193, 189, 193);
+cursor:pointer;
+  transition: 0.6s ease;
+  border-radius:40px;
+  }
+.buttons:hover{
+  box-shadow: 0 8px 8px 0 rgba(255, 255, 255, 0.40)
+}
+.block{
+display:flex;
+flex-direction:column
+
+}
+</style>
+<body>
+  <div class='container'>
+    <div class='registration'>
+      <button
+        id='signup-btn'
+        style='width:100px;height:40px'
+        class='buttons'
+      >Sign Up</button>
+      <button
+        id='login-btn'
+        style='width:100px;height:40px'
+        class='buttons'
+      >Login</button>
+    </div>
+    <form>
+      <div id='email-container' class='block'>
+        <label>Email:</label>
+        <input type='email' />
+      </div>
+      <div class='block'>
+        <label>Username:</label>
+        <input />
+      </div>
+      <div class='block'>
+        <label>Password:</label>
+        <input type='password' />
+      </div>
+      <div style='position:absolute;bottom:10px'>
+        <button class='buttons' id='bottomButton'>Sign Up</button>
+      </div>
+    </form>
+  </div>
+  {{!-- prettier-ignore --}}
+  <script>
+    const signUpBtn = document.getElementById('signup-btn'); 
+    const loginBtn =document.getElementById('login-btn'); 
+    const emailContainer =document.getElementById('email-container');
+    const bottomButton=document.getElementById("bottomButton")
+    
+    signUpBtn.addEventListener('click', () => {
+      if(emailContainer.style.display==='none')
+      { 
+        emailContainer.style.display = emailContainer.style.display === 'none' ? 'flex' : 'none';
+    bottomButton.style.display='none' ? 'flex' : 'none';
+    bottomButton.textContent='Sign Up'
+      }
+     });
+
+    loginBtn.addEventListener('click', () => { 
+        emailContainer.style.display ='none'; 
+         bottomButton.style.display = 'flex';
+        bottomButton.textContent='Log In'
+    });
+
+bottomButton.addEventListener('click', () => { 
+        console.log(`I am a very useful button`)
+         event.preventDefault()
+    });
+
+
+  </script>
+</body>

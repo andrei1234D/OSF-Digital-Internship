@@ -13,14 +13,14 @@
       <p style="margin-left:2%">{{{product.long_description}}}</p>
       <div id="bottomDiv" style="display: flex; align-items: center; padding: 10px; margin-top: auto;">
         <!-- Content for the bottom div -->
-        <button style=";margin-right: 10px;width:120px;height:45px;font-size:medium;border-radius:50px;background-color:rgb(193, 189, 193);cursor:pointer">Buy Now</button>
+        <button style=";margin-right: 10px;width:120px;height:45px;font-size:medium;border-radius:50px" class="buttons">Buy Now</button>
         <p style="margin:0;margin-left:auto;font-size:25px">Price: <p id="price" style="margin-left:1%">{{product.price}}</p> </p>
        <label for="currency"></label>
-<select name="currency" id="currency" onchange="updatePrice()" style="background-color:lightgreen;border-radius:30px;border-style:none;margin-left:1%">
+<select name="currency" id="currency" onchange="updatePrice()" style="background-color:lightgreen;border-radius:30px;border-style:none;margin-left:1%;height:40px;width:80px">
     <option value="USD">USD</option>
-    <option value="LEI">LEI</option>
-    <option value="LIRE">LIRE</option>
-    <option value="EURO">EURO</option>
+    <option value="RON">RON</option>
+    <option value="LIRE">£</option>
+    <option value="EURO">€</option>
 </select>
       </div>
     </div>
@@ -38,7 +38,7 @@
             case 'USD':
                 priceElement.textContent = productPrice.toFixed(2);
                 break;
-            case 'LEI':
+            case 'RON':
                 priceElement.textContent = (productPrice * 4.41).toFixed(2);
                 break;
             case 'LIRE':

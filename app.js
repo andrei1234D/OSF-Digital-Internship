@@ -10,6 +10,7 @@ var mensClothingRouter = require('./routes/mensClothing');
 var subcategoryProductsRouter = require('./routes/subcategoryProducts');
 var productRouter = require('./routes/product');
 var womansClothingRouter = require('./routes/womansClothing.js');
+var registerRouter = require('./routes/register.js');
 
 var app = express();
 const exphbs = require('express-handlebars');
@@ -39,6 +40,8 @@ app.use('/womansClothing/:id', subcategoryProductsRouter);
 app.use('/mensClothing/:id/:productId', productRouter);
 app.use('/womansClothing/:id/:productId', productRouter);
 app.use('/womansClothing', womansClothingRouter);
+app.use('/register', registerRouter);
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
