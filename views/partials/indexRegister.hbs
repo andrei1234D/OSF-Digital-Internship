@@ -1,0 +1,46 @@
+<style>
+body{
+  background:linear-gradient(60deg,lightgreen,lightblue)
+}
+a{
+  color:rgb(12, 66, 153);
+}
+a:link{
+  text-decoration:none;
+}
+
+a:hover{
+transition:0.4s;
+color:rgb(164, 210, 0);
+}
+.buttons{
+  box-shadow: 0 8px 8px 0 rgba(1, 1, 1, 0.1), 0 17px 50px 0 rgba(0,0,0,0.19);
+background-color:rgb(193, 189, 193);
+cursor:pointer;
+  transition: 0.6s ease;
+  border-radius:40px;
+  }
+.buttons:hover{
+  box-shadow: 0 8px 8px 0 rgba(255, 255, 255, 0.40)
+}
+
+</style>
+<body class="scrollable-container">
+<div style='display:flex;align-items:center;background-color:lightblue'>
+  <p style='font-size: 25px;font-style:bold;width:70%'>{{title}}</p>
+  <button
+    onclick="window.location.href='{{mensButton}}';"
+    style='width:150px;height:50px;font-size:medium;border-radius:50px;background-color: rgb(193, 189, 193); cursor:pointer; margin: 5px;' class="buttons"
+  >Men's Clothing</button>
+  <button
+    onclick="window.location.href='{{womanButton}}';"
+    style='width:150px;height:50px;font-size:medium;border-radius:50px;background-color:rgb(193, 189, 193);cursor:pointer;margin: 5px;' class="buttons"
+  >Women's Clothing</button>
+</div>
+</div>
+<div style='display:flex;align-items:center;font-size:25px'>
+  {{#each currentUrl}}
+    <a href='{{this.link}}'>{{this.name}}</a>
+    <bold><pre> / </pre></bold>
+  {{/each}}
+</div>

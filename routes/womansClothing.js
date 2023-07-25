@@ -49,9 +49,7 @@ router.get('/', async function (req, res, next) {
   mappedResult.womensJewelry.subcategory_name = "Women's Jewelry";
   mappedResult.womensAccesories = thirdMappedResult;
   mappedResult.womensAccesories.subcategory_name = "women's Accesories";
-  let link = req.protocol + '://' + req.get('host') + req.originalUrl;
   let breadcrumbs = [];
-
   let object1 = {};
   object1.link = `${process.env.CYCLIC_URL}`;
   object1.name = 'Home';

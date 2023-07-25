@@ -7,11 +7,11 @@
    .container{
     background-color:rgb(33, 174, 174); 
     position:absolute;
-  top:30%;
+  top:40%;
   left:50%;
   transform:translate(-50%,-50%);
   width:50%;
-  height:250px;
+  height:300px;
   box-shadow: 0 5px 25px rgb(255 255 255/40%);;
  }
   
@@ -31,12 +31,18 @@ text-align: center;
 
  }
 
+input{
+border-radius:50px;
+height:30px;
+}
+
 .buttons{
   box-shadow: 0 8px 8px 0 rgba(1, 1, 1, 0.1), 0 17px 50px 0 rgba(0,0,0,0.19);
 background-color:rgb(193, 189, 193);
 cursor:pointer;
   transition: 0.6s ease;
   border-radius:40px;
+  text-align:center;
   }
 .buttons:hover{
   box-shadow: 0 8px 8px 0 rgba(255, 255, 255, 0.40)
@@ -53,6 +59,8 @@ width:40%;
 }
 
 </style>
+{{> indexRegister}}
+<input type='hidden' id='myHiddenValue' value='{{homePageUrl}}' />
 <body>
   <div class='container'>
     <div class='registration'>
@@ -87,103 +95,140 @@ width:40%;
   </div>
   {{!-- prettier-ignore --}}
   <script>
-    const signUpBtn = document.getElementById('signup-btn'); 
-    const loginBtn =document.getElementById('login-btn'); 
-    const emailContainer =document.getElementById('email-container');
-    const bottomButton=document.getElementById("bottomButton");
-    const emailInput=document.getElementById('emailInput');
-    const usernameInput=document.getElementById('usernameInput');
-    const passwordInput=document.getElementById('passwordInput');
-    let usersArray=[];
-    let validCredentials=false;
-    let emailPattern=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    let validEmail=false;
-    let validUsername=false;
-    let validPassword=false;
-    let uniqueEmail=true;
-    signUpBtn.addEventListener('click', () => {
-      if(emailContainer.style.display==='none')
-      { 
-        emailContainer.style.display = emailContainer.style.display === 'none' ? 'flex' : 'none';
-    bottomButton.style.display='none' ? 'flex' : 'none';
-    bottomButton.textContent='Sign Up'
+  const signUpBtn = document.getElementById('signup-btn'); 
+  const loginBtn = document.getElementById('login-btn'); 
+  const emailContainer = document.getElementById('email-container');
+  const bottomButton = document.getElementById("bottomButton");
+  const emailInput = document.getElementById('emailInput');
+  const usernameInput = document.getElementById('usernameInput');
+  const passwordInput = document.getElementById('passwordInput');
+  const showPasswordCheckbox = document.getElementById('showPassword');
+  const myHbsVariable = document.getElementById('myHiddenValue').value;
+  let usersArray = [];
+  let validCredentials = false;
+  let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  let validEmail = false;
+  let validUsername = false;
+  let validPassword = false;
+  signUpBtn.addEventListener('click', () => {
+    if (emailContainer.style.display === 'none') { 
+      emailContainer.style.display = 'flex';
+      bottomButton.style.display = 'flex';
+      bottomButton.textContent = 'Sign Up';
+      passwordInput.value='';
+      emailInput.value=''
+    usernameInput.value='';
+    passwordInput.classList.remove('error-placeholder');
+    usernameInput.classList.remove('error-placeholder');
+     emailInput.classList.remove('error-placeholder');
+usernameInput.placeholder='Username';
+passwordInput.placeholder='Password';
+emailInput.placeholder='E-mail';
+    }
+  });
+
+  loginBtn.addEventListener('click', () => {
+    emailContainer.style.display = 'none';
+    bottomButton.style.display = 'flex';
+    bottomButton.textContent = 'Log In';
+    passwordInput.value='';
+    usernameInput.value='';
+    passwordInput.classList.remove('error-placeholder');
+    usernameInput.classList.remove('error-placeholder');
+usernameInput.placeholder='Username';
+passwordInput.placeholder='Password';
+  });
+
+  bottomButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    // If user wants to sign up:
+    if (bottomButton.textContent === 'Sign Up') {
+      // Validate Email
+      let email = emailInput.value.trim();
+      let uniqueEmail = true;
+      usersArray.forEach(item => {
+        if (item.email === email) {
+          uniqueEmail = false;
+        }
+      });
+
+      if (emailPattern.test(email) && uniqueEmail) {
+        validEmail = true;
+        emailInput.value = '';
+        emailInput.classList.remove('error-placeholder');
+        emailInput.placeholder = 'example@example.com';
+      } else {
+        validEmail = false;
+        emailInput.value = '';
+        emailInput.classList.add('error-placeholder');
+        emailInput.placeholder = uniqueEmail ? 'Invalid E-mail' : 'E-mail already in use';
       }
-     });
-
-    loginBtn.addEventListener('click', () => { 
-        emailContainer.style.display ='none'; 
-         bottomButton.style.display = 'flex';
-        bottomButton.textContent='Log In'
-    });
-
-bottomButton.addEventListener('click', () => {
-  event.preventDefault();
-  if (bottomButton.textContent === 'Sign Up') {
-    // validate Email
-    const email = emailInput.value.trim();
-usersArray.forEach(item => {
-  if(item.email===email)
-     uniqueEmail=false
-});
-    if (emailPattern.test(email)) {
-      validEmail = true;
-      emailInput.value='';
-      emailInput.classList.remove('error-placeholder');
-      emailInput.placeholder = 'example@example.com';
-    }else{
-      validEmail=false
-      emailInput.value = '';
-      event.preventDefault();
-      emailInput.classList.add('error-placeholder');
-      emailInput.placeholder = 'Invalid E-mail';
-    }
-    if(uniqueEmail===false){
-    validEmail=false;
-    emailInput.value='';
-    emailInput.classList.add('error-placeholder');
-      emailInput.placeholder = 'E-mail already in use';
-
-    } 
-    
-    // validate username
-    const username = usernameInput.value.trim();
-    if (username.length >= 6) {
-      validUsername = true;
-      usernameInput.classList.remove('error-placeholder');
-      usernameInput.placeholder = 'Username';
-    } else {
-      usernameInput.value = '';
-      event.preventDefault();
-      usernameInput.classList.add('error-placeholder');
-      usernameInput.placeholder = 'Username must be at least 6 characters';
+      
+      // Validate username
+      let username = usernameInput.value.trim();
+      if (username.length >= 6) {
+        validUsername = true;
+        usernameInput.classList.remove('error-placeholder');
+        usernameInput.placeholder = 'Username';
+      } else {
+        validUsername = false;
+        usernameInput.value = '';
+        usernameInput.classList.add('error-placeholder');
+        usernameInput.placeholder = 'Username must be at least 6 characters';
+      }
+      // Validate Password
+      let password = passwordInput.value.trim();
+      if (password.length >= 6) {
+        validPassword = true;
+        passwordInput.classList.remove('error-placeholder');
+        passwordInput.placeholder = 'Password';
+      } else {
+        validPassword = false;
+        passwordInput.value = '';
+        passwordInput.classList.add('error-placeholder');
+        passwordInput.placeholder = 'Password must be at least 6 characters';
+      }
+      
+      // Add user to database
+      if (validEmail && validUsername && validPassword) {
+        let object = {};   
+        object.email = email;
+        object.username = username;
+        // Hash the password in a real application before saving it
+        object.password = password;
+        usersArray.push(object);
+        emailContainer.style.display = 'none'; 
+        bottomButton.style.display = 'flex';
+        bottomButton.textContent = 'Log In';
+        usernameInput.value = '';
+        passwordInput.value = '';
+        emailInput.value = '';
+      }
     }
     
-    // validate Password
-    const password = passwordInput.value.trim();
-    if (password.length >= 6) {
-      validPassword = true;
-      passwordInput.classList.remove('error-placeholder');
-      passwordInput.placeholder = 'Password';
-    } else {
-      passwordInput.value = '';
-      event.preventDefault();
-      passwordInput.classList.add('error-placeholder');
-      passwordInput.placeholder = 'Password must be at least 6 characters';
-    }
-    
-    // add user to database
-    if (validEmail && validUsername && validPassword) {
-      let object = {};   
-      object.email = email;
-      object.username = username;
-      object.password = password;
-      usersArray.push(object);
-      emailContainer.style.display ='none'; 
-         bottomButton.style.display = 'flex';
-        bottomButton.textContent='Log In'
-    }
-  }
-});
 
-  </script>
+    // If user wants to log in
+    if (bottomButton.textContent === 'Log In') {
+      
+      let username = usernameInput.value.trim();
+      let password = passwordInput.value.trim();
+
+      let foundUser = usersArray.find(item => item.username === username && item.password === password);
+      
+      if (foundUser) {
+        // Perform successful login action here
+        localStorage.setItem('isLoggedIn', true);
+        localStorage.setItem('userName',username)
+        window.location.href =myHbsVariable
+      } else{
+        passwordInput.value = '';
+        passwordInput.classList.add('error-placeholder');
+        passwordInput.placeholder = 'Wrong Password';
+        usernameInput.value = '';
+        usernameInput.classList.add('error-placeholder');
+        usernameInput.placeholder = 'Wrong Username';
+      }
+    }
+  });
+</script>
 </body>
