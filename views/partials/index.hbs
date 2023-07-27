@@ -32,10 +32,17 @@ cursor:pointer;
 .buttons:hover{
   box-shadow: 0 8px 8px 0 rgba(255, 255, 255, 0.40)
 }
+.header{
+
+background-color:white;
+box-shadow:0 8px 8px 0 rgba(255, 255, 255, 0.70);
+border-radius:0px 0px 40px 40px;
+}
 </style>
 <body class="scrollable-container"> 
+    <div class="header">
     {{#if clothingCategory}}
-    <div style='display:flex;align-items:center;background-color:lightblue;justify-content:space-around'>
+    <div style='display:flex;align-items:center;background-color:lightblue;justify-content:space-around;margin-left:1%;border-radius:0px 0px 40px 40px'>
   <p style='font-size: 25px;font-style:bold;width:70%'>Welcome to {{title}}</p>
 <button
       onclick="window.location.href='{{mensButton}}';"
@@ -47,7 +54,7 @@ cursor:pointer;
   >women's Clothing</button>
 </div>
 {{else}}
-<div style='display:flex;align-items:center;background-color:lightblue;justify-content:space-around'>
+<div style='display:flex;align-items:center;background-color:lightblue;justify-content:space-around;margin-left:1%;border-radius:0px 0px 40px 40px'>
   <p style='font-size: 25px;font-style:bold;width:70%'>Welcome to {{title}}</p>
 <button
       onclick="window.location.href='{{mensButton}}';"
@@ -59,10 +66,11 @@ cursor:pointer;
   >women's Clothing</button>
 </div>
 {{/if}}
-<div style='display:flex;align-items:center;font-size:25px'>
+<div style='display:flex;align-items:center;font-size:25px;margin-left:5px'>
   {{#each currentUrl}}
     <a href='{{this.link}}'>{{this.name}}</a>
     <bold><pre> / </pre></bold>
   {{/each}}
+</div>
 </div>
 {{> toRegister}}
