@@ -10,7 +10,6 @@ cursor:pointer;
 .buttons:hover{
   box-shadow: 0 8px 8px 0 rgba(255, 255, 255, 0.40)
 }</style>
-
 <input type='hidden' id='myHiddenValue' value='{{REGISTER_URL}}' />
 <div style='text-align:right' id='greetings'>
 </div>
@@ -32,13 +31,13 @@ cursor:pointer;
     // User is logged in
     document.getElementById("greetings").textContent = "Logged In as " + userName;
     let logOutButton = document.createElement("a");
-    logOutButton.innerHTML = "<button class='buttons'>Log Out</button>";
+    logOutButton.innerHTML = "<button class='buttons' style='margin-left:20px;width:150px;height:50px'>Log Out</button>";
     logOutButton.onclick = handleLogout; // Set the onClick event
     document.getElementById("greetings").appendChild(logOutButton);
   } else {
     let registerButton = document.createElement("a");
     registerButton.href = `${myHbsVariable}`;
-    registerButton.innerHTML = "<button class='buttons'>Register</button>";
+    registerButton.innerHTML = "<button class='buttons' style='width:150px;height:50px'>Register</button>";
     document.getElementById("greetings").appendChild(registerButton);
   }
 </script>

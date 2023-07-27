@@ -35,27 +35,27 @@ cursor:pointer;
 </style>
 <body class="scrollable-container"> 
     {{#if clothingCategory}}
-    <div style='display:flex;align-items:center;background-color:lightblue'>
+    <div style='display:flex;align-items:center;background-color:lightblue;justify-content:space-around'>
   <p style='font-size: 25px;font-style:bold;width:70%'>Welcome to {{title}}</p>
-  <div style='width:15%;display:flex;align-items:center'><button
+<button
       onclick="window.location.href='{{mensButton}}';"
-      style='width:150px;height:50px;font-size:medium;border-radius:50px;background-color:#CCFFCC;cursor:pointer'
-    >Men's Clothing</button></div>
+      style='width:150px;height:50px;font-size:medium;border-radius:50px;background-color:#CCFFCC;cursor:pointer;'
+    >Men's Clothing</button>
   <button
     onclick="window.location.href='{{womanButton}}';"
-    style='width:150px;height:50px;font-size:medium;border-radius:50px;background-color:rgb(193, 189, 193);cursor:pointer'
+    style='width:150px;height:50px;font-size:medium;border-radius:50px;background-color:rgb(193, 189, 193);cursor:pointer;'
   >women's Clothing</button>
 </div>
 {{else}}
-<div style='display:flex;align-items:center;background-color:lightblue'>
+<div style='display:flex;align-items:center;background-color:lightblue;justify-content:space-around'>
   <p style='font-size: 25px;font-style:bold;width:70%'>Welcome to {{title}}</p>
-  <div style='width:15%;display:flex;align-items:center'><button
+<button
       onclick="window.location.href='{{mensButton}}';"
-      style='width:150px;height:50px;font-size:medium;border-radius:50px;background-color:rgb(193, 189, 193);cursor:pointer'
-    >Men's Clothing</button></div>
+      style='width:150px;height:50px;font-size:medium;border-radius:50px;background-color:rgb(193, 189, 193);cursor:pointer;'
+    >Men's Clothing</button>
   <button
     onclick="window.location.href='{{womanButton}}';"
-    style='width:150px;height:50px;font-size:medium;border-radius:50px;background-color:#CCFFCC;cursor:pointer'
+    style='width:150px;height:50px;font-size:medium;border-radius:50px;background-color:#CCFFCC;cursor:pointer;'
   >women's Clothing</button>
 </div>
 {{/if}}
