@@ -57,6 +57,7 @@ router.get('/', async function (req, res, next) {
     category_description: mensCategories.page_description,
     womanButton: womansCategoriesButton,
     mensButton: mensCategoriesButton,
+    REGISTER_URL: process.env.REGISTER_URL,
   });
 });
 

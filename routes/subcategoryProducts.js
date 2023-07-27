@@ -16,7 +16,11 @@ let mensCategoriesButton = process.env.CYCLIC_URL + '/mensClothing';
 let clothingCategory = false;
 
 router.get('/', async function (req, res, next) {
-  let link = req.protocol + 's://' + req.get('host') + req.originalUrl; //THE S
+  let link;
+
+  if (process.env.CYCLIC_URL === 'https://nice-boa-train.cyclic.app')
+    link = req.protocol + 's://' + req.get('host') + req.originalUrl;
+  else link = req.protocol + '://' + req.get('host') + req.originalUrl;
 
   let id = link.split(process.env.SPLIT_KEY).pop();
   id = id.split('/');
@@ -81,6 +85,7 @@ router.get('/', async function (req, res, next) {
     clothingCategory: clothingCategory,
     womanButton: womansCategoriesButton,
     mensButton: mensCategoriesButton,
+    REGISTER_URL: process.env.REGISTER_URL,
   });
 });
 

@@ -16,6 +16,7 @@ router.get('/', async function (req, res, next) {
     currentUrl: breadcrumbs,
     womanButton: womansCategoriesButton,
     mensButton: mensCategoriesButton,
+    REGISTER_URL: process.env.REGISTER_URL,
   });
 });
 

@@ -6,9 +6,9 @@
    
    .container{
     background-color:rgb(33, 174, 174); 
-    position:absolute;
-  top:40%;
-  left:50%;
+    position:relative;
+  top:30%;
+  margin-left:50%;
   transform:translate(-50%,-50%);
   width:50%;
   height:300px;
@@ -16,9 +16,10 @@
  }
   
   .registration{
+    position: relative;
+    top:10px;
   display:flex;
   justify-content: space-around ;
-  margin-top:2%; 
    }
 
  form{display:flex;
@@ -82,13 +83,13 @@ width:40%;
       </div>
       <div class='block'>
         <label>Username:</label>
-        <input type='Username' id='usernameInput' placeholder='Username' />
+        <input type='text' id='usernameInput' placeholder='Username' />
       </div>
       <div class='block'>
         <label>Password:</label>
         <input type='password' id='passwordInput' placeholder='Password' />
       </div>
-      <div style='position:absolute;bottom:10px'>
+      <div style='position:absolute;bottom:10px;'>
         <button class='buttons' id='bottomButton'>Sign Up</button>
       </div>
     </form>
@@ -138,7 +139,7 @@ emailInput.placeholder='E-mail';
 usernameInput.placeholder='Username';
 passwordInput.placeholder='Password';
   });
-
+console.log(bottomButton.textContent)
   bottomButton.addEventListener('click', (event) => {
     event.preventDefault();
     // If user wants to sign up:
@@ -203,6 +204,12 @@ passwordInput.placeholder='Password';
         usernameInput.value = '';
         passwordInput.value = '';
         emailInput.value = '';
+        usernameInput.placeholder = 'Username';
+        usernameInput.classList.remove('error-placeholder');
+        passwordInput.placeholder = 'Password';
+        passwordInput.classList.remove('error-placeholder');
+        emailInput.placeholder = 'E-mail';
+        emailInput.classList.remove('error-placeholder');
       }
     }
     
@@ -220,6 +227,12 @@ passwordInput.placeholder='Password';
         localStorage.setItem('isLoggedIn', true);
         localStorage.setItem('userName',username)
         window.location.href =myHbsVariable
+        usernameInput.value = '';
+        usernameInput.classList.remove('error-placeholder');
+        usernameInput.placeholder = 'Username';
+        passwordInput.value = '';
+        passwordInput.classList.remove('error-placeholder');
+        passwordInput.placeholder = 'Password';
       } else{
         passwordInput.value = '';
         passwordInput.classList.add('error-placeholder');

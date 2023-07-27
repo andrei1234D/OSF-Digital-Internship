@@ -56,7 +56,7 @@ router.get('/', async function (req, res, next) {
   breadcrumbs.push(object1);
   let object2 = {};
   object2.link = `${process.env.CYCLIC_URL}/womansClothing`;
-  object2.name = "women's Clothing";
+  object2.name = "Women's Clothing";
   breadcrumbs.push(object2);
 
   res.render('subCategories', {
@@ -68,6 +68,7 @@ router.get('/', async function (req, res, next) {
     category_description: mensCategories.page_description,
     womanButton: womansCategoriesButton,
     mensButton: mensCategoriesButton,
+    REGISTER_URL: process.env.REGISTER_URL,
   });
 });
 

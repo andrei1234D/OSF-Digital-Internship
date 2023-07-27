@@ -1,0 +1,44 @@
+{{!-- prettier-ignore --}}
+<style>
+    .buttons{
+  box-shadow: 0 8px 8px 0 rgba(1, 1, 1, 0.1), 0 17px 50px 0 rgba(0,0,0,0.19);
+background-color:rgb(193, 189, 193);
+cursor:pointer;
+  transition: 0.6s ease;
+  border-radius:40px;
+  }
+.buttons:hover{
+  box-shadow: 0 8px 8px 0 rgba(255, 255, 255, 0.40)
+}</style>
+
+<input type='hidden' id='myHiddenValue' value='{{REGISTER_URL}}' />
+<div style='text-align:right' id='greetings'>
+</div>
+
+{{!-- prettier-ignore --}}
+<script>
+  let userName = localStorage.getItem("userName");
+  let isLoggedIn = localStorage.getItem("isLoggedIn");
+  const myHbsVariable = document.getElementById('myHiddenValue').value;
+
+  function handleLogout() {
+    localStorage.setItem("isLoggedIn", "false");
+    localStorage.removeItem("userName");
+    location.reload(); // Reload the page to update the view after logout
+  }
+
+  // Update the view based on the login status
+  if (isLoggedIn === "true") {
+    // User is logged in
+    document.getElementById("greetings").textContent = "Logged In as " + userName;
+    let logOutButton = document.createElement("a");
+    logOutButton.innerHTML = "<button class='buttons'>Log Out</button>";
+    logOutButton.onclick = handleLogout; // Set the onClick event
+    document.getElementById("greetings").appendChild(logOutButton);
+  } else {
+    let registerButton = document.createElement("a");
+    registerButton.href = `${myHbsVariable}`;
+    registerButton.innerHTML = "<button class='buttons'>Register</button>";
+    document.getElementById("greetings").appendChild(registerButton);
+  }
+</script>

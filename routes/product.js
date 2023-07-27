@@ -19,8 +19,11 @@ router.get('/', async function (req, res, next) {
   const product = await retrieveDocument();
 
   //Getting the link
-  let link = req.protocol + 's://' + req.get('host') + req.originalUrl; //THE S
+  let link;
 
+  if (process.env.CYCLIC_URL === 'https://nice-boa-train.cyclic.app')
+    link = req.protocol + 's://' + req.get('host') + req.originalUrl;
+  else link = req.protocol + '://' + req.get('host') + req.originalUrl;
   //URL Manipulation
   let id = link.split('Clothing/').pop();
 
@@ -96,6 +99,7 @@ router.get('/', async function (req, res, next) {
     clothingCategory: clothingCategory,
     womanButton: womansCategoriesButton,
     mensButton: mensCategoriesButton,
+    REGISTER_URL: process.env.REGISTER_URL,
   });
 });
 
