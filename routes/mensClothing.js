@@ -32,7 +32,6 @@ router.get('/', async function (req, res, next) {
       subcategory_description: categoryItem.page_description,
     })
   );
-  console.log(mensCategories.page_description);
   let mappedResult = {};
   mappedResult.mensClothing = firstMappedResult;
   mappedResult.mensClothing.subcategory_name = "Men's Clothing";
