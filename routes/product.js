@@ -40,8 +40,6 @@ router.get('/', async function (req, res, next) {
 
   //breadcrumbs
   let breadcrumbs = [];
-  console.log(`${process.env.CYCLIC_URL}/mensClothing/${id1}/${id2}`);
-  console.log(link);
   if (`${process.env.CYCLIC_URL}/mensClothing/${id1}/${id2}` === link) {
     clothingCategory = true;
     let object = {};
