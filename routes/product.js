@@ -1,10 +1,10 @@
-var express = require('express');
-var router = express.Router();
+let express = require('express');
+let router = express.Router();
 require('dotenv').config();
 
 let uri = process.env.API_KEY;
 const retrieveDocument = async () => {
-  var mongoose = require('mongoose');
+  let mongoose = require('mongoose');
   mongoose.connect(uri);
   const ProductModel = require('../models/product');
   return await ProductModel.find();
