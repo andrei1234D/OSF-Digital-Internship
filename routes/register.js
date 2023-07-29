@@ -1,6 +1,5 @@
 let express = require('express');
 let router = express.Router();
-const jwt = require('jsonwebtoken');
 require('dotenv').config();
 /* GET users listing. */
 

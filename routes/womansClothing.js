@@ -49,15 +49,26 @@ router.get('/', async function (req, res, next) {
   mappedResult.womensJewelry.subcategory_name = "Women's Jewelry";
   mappedResult.womensAccesories = thirdMappedResult;
   mappedResult.womensAccesories.subcategory_name = "women's Accesories";
+
+  const createObjectBreadcrumb = (object, link, name) => {
+    object = {};
+    object.link = link;
+    object.name = name;
+    return object;
+  };
+
   let breadcrumbs = [];
-  let object1 = {};
-  object1.link = `${process.env.CYCLIC_URL}`;
-  object1.name = 'Home';
-  breadcrumbs.push(object1);
-  let object2 = {};
-  object2.link = `${process.env.CYCLIC_URL}/womansClothing`;
-  object2.name = "Women's Clothing";
-  breadcrumbs.push(object2);
+  let object = {};
+  breadcrumbs.push(
+    createObjectBreadcrumb(object, `${process.env.CYCLIC_URL}`, `Home`)
+  );
+  breadcrumbs.push(
+    createObjectBreadcrumb(
+      object,
+      `${process.env.CYCLIC_URL}/womansClothing`,
+      `Women's clothing `
+    )
+  );
 
   res.render('subCategories', {
     categoryName: "Women's",

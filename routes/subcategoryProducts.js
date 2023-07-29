@@ -24,42 +24,62 @@ router.get('/', async function (req, res, next) {
 
   let id = link.split(process.env.SPLIT_KEY).pop();
   id = id.split('/');
+
+  const createObjectBreadcrumb = (object, link, name) => {
+    object = {};
+    object.link = link;
+    object.name = name;
+    return object;
+  };
+
   let breadcrumbs = [];
   switch (link) {
     case `${process.env.CYCLIC_URL}/womansClothing/${id[1]}`:
-      let object1 = {};
-      object1.link = `${process.env.CYCLIC_URL}`;
-      object1.name = 'Home';
-      breadcrumbs.push(object1);
-      let object2 = {};
-      object2.link = `${process.env.CYCLIC_URL}/womansClothing`;
-      object2.name = "women's Clothing";
-      breadcrumbs.push(object2);
-      let object3 = {};
-      object3.link = `${process.env.CYCLIC_URL}/womansClothing/${id[1]}`;
-      object3.name = id[1];
-      breadcrumbs.push(object3);
+      let object = {};
+      breadcrumbs.push(
+        createObjectBreadcrumb(object, `${process.env.CYCLIC_URL}`, `Home`)
+      );
+      breadcrumbs.push(
+        createObjectBreadcrumb(
+          object,
+          `${process.env.CYCLIC_URL}/womansClothing`,
+          `Women's Clothing`
+        )
+      );
+      breadcrumbs.push(
+        createObjectBreadcrumb(
+          object,
+          `${process.env.CYCLIC_URL}/womansClothing/${id[1]}`,
+          `${id[1]}`
+        )
+      );
       break;
     case `${process.env.CYCLIC_URL}/mensClothing/${id[1]}`:
       clothingCategory = true;
-      let object4 = {};
-      object4.link = `${process.env.CYCLIC_URL}`;
-      object4.name = 'Home';
-      breadcrumbs.push(object4);
-      let object5 = {};
-      object5.link = `${process.env.CYCLIC_URL}/mensClothing`;
-      object5.name = "Men's Clothing";
-      breadcrumbs.push(object5);
-      let object6 = {};
-      object6.link = `${process.env.CYCLIC_URL}/mensClothing/${id[1]}`;
-      object6.name = id[1];
-      breadcrumbs.push(object6);
+      let object1 = {};
+      breadcrumbs.push(
+        createObjectBreadcrumb(object1, `${process.env.CYCLIC_URL}`, `Home`)
+      );
+      breadcrumbs.push(
+        createObjectBreadcrumb(
+          object1,
+          `${process.env.CYCLIC_URL}/mensClothing`,
+          `Men's Clothing`
+        )
+      );
+      breadcrumbs.push(
+        createObjectBreadcrumb(
+          object1,
+          `${process.env.CYCLIC_URL}/mensClothing/${id[1]}`,
+          `${id[1]}`
+        )
+      );
       break;
   }
 
   const product = await retrieveDocument();
   let mappedResult = [];
-  product.map((item) => {
+  product.forEach((item) => {
     if (item.primary_category_id === id[1]) {
       let object = {};
       object.price = item.price;

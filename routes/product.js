@@ -39,48 +39,73 @@ router.get('/', async function (req, res, next) {
   }
 
   //breadcrumbs
+  const createObjectBreadcrumb = (object, link, name) => {
+    object = {};
+    object.link = link;
+    object.name = name;
+    return object;
+  };
+
   let breadcrumbs = [];
   if (`${process.env.CYCLIC_URL}/mensClothing/${id1}/${id2}` === link) {
     clothingCategory = true;
     let object = {};
-    object.link = `${process.env.CYCLIC_URL}`;
-    object.name = 'Home';
-    breadcrumbs.push(object);
-    let object1 = {};
-    object1.link = `${process.env.CYCLIC_URL}/mensClothing`;
-    object1.name = "Men's Clothing";
-    breadcrumbs.push(object1);
-    let object5 = {};
-    object5.link = `${process.env.CYCLIC_URL}/mensClothing/${id1}`;
-    object5.name = id1;
-    breadcrumbs.push(object5);
-    let object6 = {};
-    object6.link = `${process.env.CYCLIC_URL}/mensClothing/${id1}/${id2}`;
-    object6.name = id2;
-    breadcrumbs.push(object6);
+    breadcrumbs.push(
+      createObjectBreadcrumb(object, `${process.env.CYCLIC_URL}`, `Home`)
+    );
+    breadcrumbs.push(
+      createObjectBreadcrumb(
+        object,
+        `${process.env.CYCLIC_URL}/mensClothing`,
+        `Men's Clothing`
+      )
+    );
+    breadcrumbs.push(
+      createObjectBreadcrumb(
+        object,
+        `${process.env.CYCLIC_URL}/mensClothing/${id1}`,
+        `${id1}`
+      )
+    );
+    breadcrumbs.push(
+      createObjectBreadcrumb(
+        object,
+        `${process.env.CYCLIC_URL}/mensClothing/${id1}/${id2}`,
+        `${id2}`
+      )
+    );
   } else if (
     `${process.env.CYCLIC_URL}/womansClothing/${id1}/${id2}` === link
   ) {
     clothingCategory = false;
     let object = {};
-    object.link = `${process.env.CYCLIC_URL}`;
-    object.name = 'Home';
-    breadcrumbs.push(object);
-    let object1 = {};
-    object1.link = `${process.env.CYCLIC_URL}/womansClothing`;
-    object1.name = "women's Clothing";
-    breadcrumbs.push(object1);
-    let object5 = {};
-    object5.link = `${process.env.CYCLIC_URL}/womansClothing/${id1}`;
-    object5.name = id1;
-    breadcrumbs.push(object5);
-    let object6 = {};
-    object6.link = `${process.env.CYCLIC_URL}/womansClothing/${id1}/${id2}`;
-    object6.name = id2;
-    breadcrumbs.push(object6);
+    breadcrumbs.push(
+      createObjectBreadcrumb(object, `${process.env.CYCLIC_URL}`, `Home`)
+    );
+    breadcrumbs.push(
+      createObjectBreadcrumb(
+        object,
+        `${process.env.CYCLIC_URL}/womansClothing`,
+        `Women's Clothing`
+      )
+    );
+    breadcrumbs.push(
+      createObjectBreadcrumb(
+        object,
+        `${process.env.CYCLIC_URL}/womansClothing/${id1}`,
+        `${id1}`
+      )
+    );
+    breadcrumbs.push(
+      createObjectBreadcrumb(
+        object,
+        `${process.env.CYCLIC_URL}/womansClothing/${id1}/${id2}`,
+        `${id2}`
+      )
+    );
   }
   let mappedResult = {};
-  product.map((item) => {
+  product.forEach((item) => {
     if (item.name === id2) {
       mappedResult.price = item.price;
       mappedResult.name = item.name;

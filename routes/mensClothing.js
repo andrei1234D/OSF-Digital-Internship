@@ -37,16 +37,27 @@ router.get('/', async function (req, res, next) {
   mappedResult.mensClothing.subcategory_name = "Men's Clothing";
   mappedResult.mensAccessories = secondMappedResult;
   mappedResult.mensAccessories.subcategory_name = "Men's Accessories";
+
+  const createObjectBreadcrumb = (object, link, name) => {
+    object = {};
+    object.link = link;
+    object.name = name;
+    return object;
+  };
+
   let breadcrumbs = [];
 
-  let object1 = {};
-  object1.link = `${process.env.CYCLIC_URL}`;
-  object1.name = 'Home';
-  breadcrumbs.push(object1);
-  let object2 = {};
-  object2.link = `${process.env.CYCLIC_URL}/mensClothing`;
-  object2.name = "Men's Clothing";
-  breadcrumbs.push(object2);
+  let object = {};
+  breadcrumbs.push(
+    createObjectBreadcrumb(object, `${process.env.CYCLIC_URL}`, `Home`)
+  );
+  breadcrumbs.push(
+    createObjectBreadcrumb(
+      object,
+      `${process.env.CYCLIC_URL}/mensClothing`,
+      `Men's Clothing`
+    )
+  );
   res.render('subCategories', {
     categoryName: "Men's",
     title: 'Robbing City Galati',
