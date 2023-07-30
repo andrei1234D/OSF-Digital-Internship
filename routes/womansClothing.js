@@ -12,7 +12,26 @@ const retrieveDocument = async () => {
 let womansCategoriesButton = process.env.CYCLIC_URL + '/womansClothing';
 let mensCategoriesButton = process.env.CYCLIC_URL + '/mensClothing';
 
-/* GET users listing. */
+const createObjectBreadcrumb = (object, link, name) => {
+  object = {};
+  object.link = link;
+  object.name = name;
+  return object;
+};
+
+let breadcrumbs = [];
+let object = {};
+breadcrumbs.push(
+  createObjectBreadcrumb(object, `${process.env.CYCLIC_URL}`, `Home`)
+);
+breadcrumbs.push(
+  createObjectBreadcrumb(
+    object,
+    `${process.env.CYCLIC_URL}/womansClothing`,
+    `Women's clothing `
+  )
+);
+
 router.get('/', async function (req, res, next) {
   const mensCategories = await retrieveDocument();
 
@@ -49,26 +68,6 @@ router.get('/', async function (req, res, next) {
   mappedResult.womensJewelry.subcategory_name = "Women's Jewelry";
   mappedResult.womensAccesories = thirdMappedResult;
   mappedResult.womensAccesories.subcategory_name = "women's Accesories";
-
-  const createObjectBreadcrumb = (object, link, name) => {
-    object = {};
-    object.link = link;
-    object.name = name;
-    return object;
-  };
-
-  let breadcrumbs = [];
-  let object = {};
-  breadcrumbs.push(
-    createObjectBreadcrumb(object, `${process.env.CYCLIC_URL}`, `Home`)
-  );
-  breadcrumbs.push(
-    createObjectBreadcrumb(
-      object,
-      `${process.env.CYCLIC_URL}/womansClothing`,
-      `Women's clothing `
-    )
-  );
 
   res.render('subCategories', {
     categoryName: "Women's",
