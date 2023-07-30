@@ -42,10 +42,11 @@ border-radius:0px 0px 40px 40px;
   display:flex;
   align-items:center;
   background-color:	rgba(173,216,230,0.70);
-  box-shadow:0 8px 8px 0 rgba(173, 216, 230, 0.50);
+  box-shadow:2px 4px 4px 8px rgba(173, 216, 230, 0.40);
   justify-content:space-around;
   margin-left:1%;
   border-radius:0px 0px 40px 40px;
+  margin-right:1%;
 }
 </style>
 <body class="scrollable-container"> 
@@ -66,7 +67,7 @@ border-radius:0px 0px 40px 40px;
 </div>
 {{else}}
 <div style='display:flex;align-items:center;background-color:lightblue;justify-content:space-around;margin-left:1%;border-radius:0px 0px 40px 40px'>
-  <p style='font-size: 25px;font-style:bold;width:70%'>Welcome to {{title}}</p>
+  <img src='images/favicon.ico' alt='' /><p style='font-size: 25px;font-style:bold;width:70%'>Welcome to {{title}}</p>
 <button
       onclick="window.location.href='{{mensButton}}';"
       class="buttons"
