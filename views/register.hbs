@@ -111,6 +111,7 @@ width:40%;
   let validEmail = false;
   let validUsername = false;
   let validPassword = false;
+
   signUpBtn.addEventListener('click', () => {
     if (emailContainer.style.display === 'none') { 
       emailContainer.style.display = 'flex';
@@ -233,7 +234,7 @@ console.log(bottomButton.textContent)
         passwordInput.value = '';
         passwordInput.classList.remove('error-placeholder');
         passwordInput.placeholder = 'Password';
-      } else{
+      } else if(passwordInput.value>=1&& usernameInput.value>=1){
         passwordInput.value = '';
         passwordInput.classList.add('error-placeholder');
         passwordInput.placeholder = 'Wrong Password';
