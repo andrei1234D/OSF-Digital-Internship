@@ -235,7 +235,7 @@ console.log(bottomButton.textContent)
         passwordInput.value = '';
         passwordInput.classList.remove('error-placeholder');
         passwordInput.placeholder = 'Password';
-      } else if(passwordInput.value!=null&& usernameInput.value!=null){
+      } else if(passwordInput.value!=""&& usernameInput.value!=""){
         passwordInput.value = '';
         passwordInput.classList.add('error-placeholder');
         passwordInput.placeholder = 'Wrong Password';
