@@ -99,7 +99,7 @@ router.get('/', async function (req, res, next) {
     }
   });
   res.render('subcategoryProducts', {
-    title: 'Robbing City Galati',
+    title: 'Shopping Mania',
     currentUrl: breadcrumbs,
     product: mappedResult,
     clothingCategory: clothingCategory,

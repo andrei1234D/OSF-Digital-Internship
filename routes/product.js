@@ -116,7 +116,7 @@ router.get('/', async function (req, res, next) {
   });
 
   res.render('product', {
-    title: 'Robbing City Galati',
+    title: 'Shopping Mania',
     currentUrl: breadcrumbs,
     product: mappedResult,
     clothingCategory: clothingCategory,

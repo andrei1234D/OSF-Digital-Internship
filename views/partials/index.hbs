@@ -9,7 +9,7 @@
         display: none; /* Chrome, Safari, and Opera */
     }
 body{
-  background:linear-gradient(60deg,lightgreen,lightblue)
+  background:linear-gradient(90deg,orange,rgb(243, 60, 60))
 }
 a{
   color:rgb(12, 66, 153);
@@ -41,7 +41,7 @@ border-radius:0px 0px 40px 40px;
 .navBar{
   display:flex;
   align-items:center;
-  background-color:	rgba(173,216,230,0.70);
+  background-color:	rgb(243, 60, 60,0.70);
   box-shadow:2px 4px 4px 8px rgba(173, 216, 230, 0.40);
   justify-content:space-around;
   margin-left:1%;
@@ -53,11 +53,11 @@ border-radius:0px 0px 40px 40px;
     <div class="header">
     {{#if clothingCategory}}
     <div class='navBar'>
-  <img src='images/favicon.ico' alt='' /><p style='font-size: 25px;font-style:bold;width:70%'>Welcome to {{title}}</p>
+  <img src='images/favicon.ico' alt='' /><p style='font-size: 25px;font-style:bold;width:70%'>{{title}}</p>
 <button
       onclick="window.location.href='{{mensButton}}';"
       class="buttons"
-      style='width:150px;height:50px;font-size:medium;border-radius:50px;background-color:#CCFFCC;cursor:pointer;'
+      style='width:150px;height:50px;font-size:medium;border-radius:50px;background-color:orange;cursor:pointer;'
     >Men's Clothing</button>
   <button
     onclick="window.location.href='{{womanButton}}';"
@@ -66,8 +66,8 @@ border-radius:0px 0px 40px 40px;
   >Women's Clothing</button>
 </div>
 {{else}}
-<div style='display:flex;align-items:center;background-color:lightblue;justify-content:space-around;margin-left:1%;border-radius:0px 0px 40px 40px'>
-  <img src='images/favicon.ico' alt='' /><p style='font-size: 25px;font-style:bold;width:70%'>Welcome to {{title}}</p>
+<div style='display:flex;align-items:center;background-color:	rgb(243, 60, 60,0.70);justify-content:space-around;margin-left:1%;border-radius:0px 0px 40px 40px'>
+  <img src='images/favicon.ico' alt='' /><p style='font-size: 25px;font-style:bold;width:70%'>{{title}}</p>
 <button
       onclick="window.location.href='{{mensButton}}';"
       class="buttons"
@@ -76,7 +76,7 @@ border-radius:0px 0px 40px 40px;
   <button
     onclick="window.location.href='{{womanButton}}';"
     class="buttons"
-    style='width:150px;height:50px;font-size:medium;border-radius:50px;background-color:#CCFFCC;cursor:pointer;'
+    style='width:150px;height:50px;font-size:medium;border-radius:50px;background-color:orange;cursor:pointer;'
   >Women's Clothing</button>
 </div>
 {{/if}}

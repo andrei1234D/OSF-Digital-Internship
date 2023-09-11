@@ -18,7 +18,7 @@ currentUrl.push(object1);
 
 router.get('/', function (req, res, next) {
   res.render('register', {
-    title: 'Robbing City Galati',
+    title: 'Shopping Mania',
     homePageUrl: process.env.CYCLIC_URL,
     currentUrl: currentUrl,
     womanButton: womansCategoriesButton,

@@ -13,7 +13,7 @@ breadcrumbs.push(object);
 
 router.get('/', async function (req, res, next) {
   res.render('index', {
-    title: 'Robbing City Galati',
+    title: 'Shopping Mania',
     currentUrl: breadcrumbs,
     womanButton: womansCategoriesButton,
     mensButton: mensCategoriesButton,

@@ -71,7 +71,7 @@ router.get('/', async function (req, res, next) {
 
   res.render('subCategories', {
     categoryName: "Women's",
-    title: 'Robbing City Galati',
+    title: 'Shopping Mania',
     subcategories: mappedResult,
     currentUrl: breadcrumbs,
     clothingCategory: false,
