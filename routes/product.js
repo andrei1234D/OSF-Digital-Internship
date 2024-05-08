@@ -21,7 +21,7 @@ router.get('/', async function (req, res, next) {
   //Getting the link
   let link;
 
-  if (process.env.CYCLIC_URL === 'https://nice-boa-train.cyclic.app')
+  if (process.env.CYCLIC_URL === 'https://shy-puce-reindeer-hem.cyclic.app')
     link = req.protocol + 's://' + req.get('host') + req.originalUrl;
   else link = req.protocol + '://' + req.get('host') + req.originalUrl;
   //URL Manipulation
